@@ -272,128 +272,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/29/centos7/centos7 安装 mysql 5.7.14/" itemprop="url">
-                  centos7 安装 mysql 5.7.14
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-29T09:38:50+08:00" content="2016-10-29">
-              2016-10-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="centos7-mysql5-7-14编译好的通用二进制文件安装"><a href="#centos7-mysql5-7-14编译好的通用二进制文件安装" class="headerlink" title="centos7 mysql5.7.14编译好的通用二进制文件安装"></a>centos7 mysql5.7.14编译好的通用二进制文件安装</h2><p>myql下载地址：<a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">选择 Linux - Generic</div><div class="line">Linux - Generic (glibc 2.5) (x86, 64-bit), Compressed TAR Archive</div><div class="line">mysql-5.7.14-linux-glibc2.5-x86_64.tar.gz</div><div class="line"></div><div class="line">通过官方编译好的二进制文件tar.gz压缩包安装较为简单</div><div class="line">将下面的源码编译安装中的安装步骤中的2，3步骤换为</div><div class="line">将mysql安装文件复制到默认的安装路径下</div><div class="line">$ mv /mysql-5.7.14-linux-glibc2.5-x86_64.tar.gz /usr/local</div><div class="line">$ tar -zvxf mysql-5.7.14-linux-glibc2.5-x86_64.tar.gz</div><div class="line">将减压后的文件夹更名为mysql</div><div class="line">$ mv mysql-5.7.14-linux-glibc2.5-x86_64 mysql</div><div class="line">然后从第4步开始操作，</div><div class="line">第6步的初始化数据库，默认的数据存放路径为安装路径的data文件夹下</div><div class="line">$ /usr/local/mysql/bin/mysqld --initialize-insecure --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data</div><div class="line"></div><div class="line">备注：</div><div class="line">如果改变默认安装路径，则需要 修改</div><div class="line">/my.cnf，/etc/init.d/mysqld（/usr/local/mysql/support-files/mysql.serve的副本启动文件）中的 </div><div class="line">basedir=&apos;&apos;和datadir=&apos;&apos;路径</div></pre></td></tr></table></figure></p>
-<p>=====================================================================</p>
-<h2 id="centos-7-msql5-7-14源码编译安装"><a href="#centos-7-msql5-7-14源码编译安装" class="headerlink" title="centos 7 msql5.7.14源码编译安装"></a>centos 7 msql5.7.14源码编译安装</h2><h3 id="1-下载所需安装包"><a href="#1-下载所需安装包" class="headerlink" title="1.下载所需安装包"></a>1.下载所需安装包</h3><p>myql下载地址：<a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">选择 Source Code</div><div class="line">Generic Linux (Architecture Independent), Compressed TAR Archive Includes Boost Headers</div><div class="line">mysql-boost-5.7.14.tar.gz</div><div class="line">说明：5.7以后必须要有Boost的支持，所以之间下载包含boost的源码。</div></pre></td></tr></table></figure></p>
-<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">1.检查是否已经安装过mysql</div><div class="line">$ rpm -qa | grep mysql</div><div class="line">有的话卸载以前安装的mysql</div><div class="line">$ rpm -e --nodeps xxx （xxx 是搜索结果）</div><div class="line">删除所有相关文件（例如：/etc/my.cnf）</div><div class="line"></div><div class="line">注意centos 7 默认在/etc下有my.cnf文件将这个改名或删除，</div><div class="line">不然mysql启动会先加载/etc下的my.cnf文件导致，mysql启动失败</div><div class="line">例如</div><div class="line">$ mv /etc/my.cnf /etc/my.cnf.back</div><div class="line"></div><div class="line">2.安装编译代码的依赖包</div><div class="line">$ yum -y install make gcc-c++ cmake bison-devel ncurses-devel libaio</div><div class="line">$ yum install libaio libaio-devel -y</div><div class="line">$ yum install perl-Data-Dumper -y</div><div class="line">$ yum install net-tools -y</div><div class="line"></div><div class="line">3.加压缩并安装</div><div class="line">$ tar -zvxf mysql-boost-5.7.14.tar.gz</div><div class="line">$ cd mysql-5.7.14</div><div class="line">$ cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \</div><div class="line">-DMYSQL_DATADIR=/data/mysql \</div><div class="line">-DDOWNLOAD_BOOST=1 \</div><div class="line">-DWITH_BOOST=./boost \</div><div class="line">-DSYSCONFDIR=/etc \</div><div class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_PARTITION_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_FEDERATED_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_BLACKHOLE_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_MYISAM_STORAGE_ENGINE=1 \</div><div class="line">-DENABLED_LOCAL_INFILE=1 \</div><div class="line">-DENABLE_DTRACE=0 \</div><div class="line">-DDEFAULT_CHARSET=utf8mb4 \</div><div class="line">-DDEFAULT_COLLATION=utf8mb4_general_ci \</div><div class="line">-DWITH_EMBEDDED_SERVER=1</div><div class="line">$ make</div><div class="line">$ make install</div><div class="line"></div><div class="line">4.配置mysql</div><div class="line"></div><div class="line">检查系统是否已经有mysql用户，如果没有则创建</div><div class="line">$ cat /etc/passwd | grep mysql</div><div class="line">$ cat /etc/group | grep mysql</div><div class="line"></div><div class="line">创建mysql用户组用户组</div><div class="line">$ useradd -M -s /sbin/nologin mysql</div><div class="line">$ useradd -g mysql mysql</div><div class="line"></div><div class="line">在/usr/local/mysql目录下添加my.cnf配置文件，配置内容在本文档最底部。</div><div class="line">注意 mysql先从/etc目录下读取my.cnf，所以/etc目录有这个文件的时候此配置失效</div><div class="line"></div><div class="line">修改权限</div><div class="line">$ chown -R mysql:mysql /usr/local/mysql</div><div class="line">$ chown -R mysql:mysql /data/mysql</div><div class="line"></div><div class="line">5.设置开机自启动</div><div class="line">$ cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld</div><div class="line">$ chmod +x /etc/init.d/mysqld</div><div class="line">$ chkconfig --add mysqld</div><div class="line">$ chkconfig mysqld on</div><div class="line"></div><div class="line">6.初始化数据库</div><div class="line">$ /usr/local/mysql/bin/mysqld --initialize-insecure --user=mysql --basedir=/usr/local/mysql --datadir=/data/mysql</div><div class="line"></div><div class="line">7.启动mysql</div><div class="line">$ service mysqld start</div><div class="line"></div><div class="line">8.设置root密码，添加一个用户并支持远程访问</div><div class="line">$ ./mysql</div><div class="line">mysql&gt; set password=password(&apos;925&apos;);</div><div class="line">mysql&gt; grant all on *.* to dba_user@&apos;%&apos; identified by &apos;925&apos;;</div><div class="line">mysql&gt; flush privileges;</div><div class="line">mysql&gt; select user,host,authentication_string from mysql.user;</div></pre></td></tr></table></figure>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">启动服务</div><div class="line">service mysqld start</div><div class="line">关闭服务</div><div class="line">service mysqld stop</div><div class="line">``` </div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">### my.cnf</div></pre></td></tr></table></figure>
-<p>[client]<br>port = 3306<br>socket = /tmp/mysql.sock<br>default-character-set = utf8mb4<br>[mysqld]<br>port = 3306<br>socket = /tmp/mysql.sock<br>basedir = /usr/local/mysql<br>datadir = /data/mysql<br>pid-file = /data/mysql/mysql.pid<br>user = mysql<br>bind-address = 0.0.0.0<br>server-id = 1<br>init-connect = ‘SET NAMES utf8mb4’<br>character-set-server = utf8mb4</p>
-<p>#skip-name-resolve</p>
-<p>#skip-networking<br>back_log = 300<br>max_connections = 1000<br>max_connect_errors = 6000<br>open_files_limit = 65535<br>table_open_cache = 128<br>max_allowed_packet = 4M<br>binlog_cache_size = 1M<br>max_heap_table_size = 8M<br>tmp_table_size = 16M<br>read_buffer_size = 2M<br>read_rnd_buffer_size = 8M<br>sort_buffer_size = 8M<br>join_buffer_size = 8M<br>key_buffer_size = 4M<br>thread_cache_size = 8<br>query_cache_type = 1<br>query_cache_size = 8M<br>query_cache_limit = 2M<br>ft_min_word_len = 4<br>log_bin = mysql-bin<br>binlog_format = mixed<br>expire_logs_days = 30<br>log_error = /data/mysql/mysql-error.log<br>slow_query_log = 1<br>long_query_time = 1<br>slow_query_log_file = /data/mysql/mysql-slow.log<br>performance_schema = 0<br>explicit_defaults_for_timestamp</p>
-<p>#lower_case_table_names = 1<br>skip-external-locking<br>default_storage_engine = InnoDB</p>
-<p>#default-storage-engine = MyISAM<br>innodb_file_per_table = 1<br>innodb_open_files = 500<br>innodb_buffer_pool_size = 64M<br>innodb_write_io_threads = 4<br>innodb_read_io_threads = 4<br>innodb_thread_concurrency = 0<br>innodb_purge_threads = 1<br>innodb_flush_log_at_trx_commit = 2<br>innodb_log_buffer_size = 2M<br>innodb_log_file_size = 32M<br>innodb_log_files_in_group = 3<br>innodb_max_dirty_pages_pct = 90<br>innodb_lock_wait_timeout = 120<br>bulk_insert_buffer_size = 8M<br>myisam_sort_buffer_size = 8M<br>myisam_max_sort_file_size = 10G<br>myisam_repair_threads = 1<br>interactive_timeout = 28800<br>wait_timeout = 28800<br>[mysqldump]<br>quick<br>max_allowed_packet = 16M<br>[myisamchk]<br>key_buffer_size = 8M<br>sort_buffer_size = 8M<br>read_buffer = 4M<br>write_buffer = 4M<br>```</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/29/centos7/centos 7 jdk环境变量设置/" itemprop="url">
                   centos 7 jdk环境变量设置
                 </a>
@@ -462,6 +340,127 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/usr/local/java/jdk1.8.0_73</div><div class="line">export PATH=$PATH:$JAVA_HOME/bin</div><div class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</div><div class="line">export JAVA_HOME PATH CLASSPATH</div></pre></td></tr></table></figure>
 <p>使设置生效</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> /etc/profile</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/29/centos7/CentOS7安装配置/" itemprop="url">
+                  CentOS7安装配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T09:38:50+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/centos7/" itemprop="url" rel="index">
+                    <span itemprop="name">centos7</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="前提是系统已经安装就绪，此时除了root，其他账号没有sudo权限，使用root登陆系统"><a href="#前提是系统已经安装就绪，此时除了root，其他账号没有sudo权限，使用root登陆系统" class="headerlink" title="前提是系统已经安装就绪，此时除了root，其他账号没有sudo权限，使用root登陆系统"></a>前提是系统已经安装就绪，此时除了root，其他账号没有sudo权限，使用root登陆系统</h3><h3 id="1、设置主机名"><a href="#1、设置主机名" class="headerlink" title="1、设置主机名"></a>1、设置主机名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hostnamectl <span class="built_in">set</span>-hostname XXXXXX</div></pre></td></tr></table></figure>
+<p>或者编辑此文件进行设置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi /etc/hostname</div></pre></td></tr></table></figure></p>
+<h3 id="2、设置hosts"><a href="#2、设置hosts" class="headerlink" title="2、设置hosts"></a>2、设置hosts</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi /etc/hosts</div></pre></td></tr></table></figure>
+<p>将此文件改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">127.0.0.1    XXXXXX localhost</div><div class="line">#127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</div><div class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</div></pre></td></tr></table></figure></p>
+<h3 id="3、设置静态ip"><a href="#3、设置静态ip" class="headerlink" title="3、设置静态ip"></a>3、设置静态ip</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi /etc/sysconfig/network-scripts ifcfg-??????(名子不确定)</div></pre></td></tr></table></figure>
+<p>将<code>BOOTPROTO=dhcp</code>注释掉，并且设置<code>ONBOOT=yes</code><br>并且在文件最下面加入(根据自己实际情况)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">IPADDR=192.168.100.27	#IP</div><div class="line">GATEWAY=192.168.100.1	#默认网关</div><div class="line">NETMASK=255.255.255.0	#子网掩码</div><div class="line">DNS1=192.168.100.159	#DNS1</div><div class="line">DNS2=114.114.114.114	#DNS2</div></pre></td></tr></table></figure></p>
+<h3 id="4、设置sudo用户权限"><a href="#4、设置sudo用户权限" class="headerlink" title="4、设置sudo用户权限"></a>4、设置sudo用户权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ chmod u+w /etc/sudoers   <span class="comment">#将此文件设置为可写</span></div><div class="line">$ vi /etc/sudoers    <span class="comment">#找到 root ALL=(ALL) All, 在下面加入 XXXXX ALL=(ALL) ALL</span></div></pre></td></tr></table></figure>
+<h3 id="5、ssh连接"><a href="#5、ssh连接" class="headerlink" title="5、ssh连接"></a>5、ssh连接</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ service network restart   <span class="comment">#重启网络</span></div><div class="line">$ reboot   <span class="comment">#重启计算机</span></div><div class="line">$ ip addr   <span class="comment">#查看ip地址（此时还不能使用ifconfig）</span></div></pre></td></tr></table></figure>
+<p>重启成功后使用非root账号登陆<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ip addr   <span class="comment">#查看ip地址（此时还不能使用ifconfig）</span></div><div class="line">$ sudo yum install net-tools   <span class="comment">#安装网络工具</span></div><div class="line">$ ifconfig   <span class="comment">#可以使用ifconfig了，并且可以使用xshell等工具进行ssh连接了</span></div></pre></td></tr></table></figure></p>
+<h3 id="6、安装常用工具"><a href="#6、安装常用工具" class="headerlink" title="6、安装常用工具"></a>6、安装常用工具</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum install lrzsz</div><div class="line">$ yum install vim</div><div class="line">$ yum install wget</div><div class="line">$ yum install zip unzip</div></pre></td></tr></table></figure>
           
         
       
@@ -631,8 +630,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/29/centos7/CentOS7安装配置/" itemprop="url">
-                  CentOS7安装配置
+                <a class="post-title-link" href="/2016/10/29/centos7/centos7 安装 mysql 5.7.14/" itemprop="url">
+                  centos7 安装 mysql 5.7.14
                 </a>
               
             
@@ -659,8 +658,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/centos7/" itemprop="url" rel="index">
-                    <span itemprop="name">centos7</span>
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
                   </a>
                 </span>
 
@@ -694,16 +693,173 @@
       
         
           
-            <h3 id="前提是系统已经安装就绪，此时除了root，其他账号没有sudo权限，使用root登陆系统"><a href="#前提是系统已经安装就绪，此时除了root，其他账号没有sudo权限，使用root登陆系统" class="headerlink" title="前提是系统已经安装就绪，此时除了root，其他账号没有sudo权限，使用root登陆系统"></a>前提是系统已经安装就绪，此时除了root，其他账号没有sudo权限，使用root登陆系统</h3><h3 id="1、设置主机名"><a href="#1、设置主机名" class="headerlink" title="1、设置主机名"></a>1、设置主机名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hostnamectl <span class="built_in">set</span>-hostname XXXXXX</div></pre></td></tr></table></figure>
-<p>或者编辑此文件进行设置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi /etc/hostname</div></pre></td></tr></table></figure></p>
-<h3 id="2、设置hosts"><a href="#2、设置hosts" class="headerlink" title="2、设置hosts"></a>2、设置hosts</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi /etc/hosts</div></pre></td></tr></table></figure>
-<p>将此文件改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">127.0.0.1    XXXXXX localhost</div><div class="line">#127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</div><div class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</div></pre></td></tr></table></figure></p>
-<h3 id="3、设置静态ip"><a href="#3、设置静态ip" class="headerlink" title="3、设置静态ip"></a>3、设置静态ip</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi /etc/sysconfig/network-scripts ifcfg-??????(名子不确定)</div></pre></td></tr></table></figure>
-<p>将<code>BOOTPROTO=dhcp</code>注释掉，并且设置<code>ONBOOT=yes</code><br>并且在文件最下面加入(根据自己实际情况)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">IPADDR=192.168.100.27	#IP</div><div class="line">GATEWAY=192.168.100.1	#默认网关</div><div class="line">NETMASK=255.255.255.0	#子网掩码</div><div class="line">DNS1=192.168.100.159	#DNS1</div><div class="line">DNS2=114.114.114.114	#DNS2</div></pre></td></tr></table></figure></p>
-<h3 id="4、设置sudo用户权限"><a href="#4、设置sudo用户权限" class="headerlink" title="4、设置sudo用户权限"></a>4、设置sudo用户权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ chmod u+w /etc/sudoers   <span class="comment">#将此文件设置为可写</span></div><div class="line">$ vi /etc/sudoers    <span class="comment">#找到 root ALL=(ALL) All, 在下面加入 XXXXX ALL=(ALL) ALL</span></div></pre></td></tr></table></figure>
-<h3 id="5、ssh连接"><a href="#5、ssh连接" class="headerlink" title="5、ssh连接"></a>5、ssh连接</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ service network restart   <span class="comment">#重启网络</span></div><div class="line">$ reboot   <span class="comment">#重启计算机</span></div><div class="line">$ ip addr   <span class="comment">#查看ip地址（此时还不能使用ifconfig）</span></div></pre></td></tr></table></figure>
-<p>重启成功后使用非root账号登陆<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ip addr   <span class="comment">#查看ip地址（此时还不能使用ifconfig）</span></div><div class="line">$ sudo yum install net-tools   <span class="comment">#安装网络工具</span></div><div class="line">$ ifconfig   <span class="comment">#可以使用ifconfig了，并且可以使用xshell等工具进行ssh连接了</span></div></pre></td></tr></table></figure></p>
-<h3 id="6、安装常用工具"><a href="#6、安装常用工具" class="headerlink" title="6、安装常用工具"></a>6、安装常用工具</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum install lrzsz</div><div class="line">$ yum install vim</div><div class="line">$ yum install wget</div><div class="line">$ yum install zip unzip</div></pre></td></tr></table></figure>
+            <h2 id="centos7-mysql5-7-14编译好的通用二进制文件安装"><a href="#centos7-mysql5-7-14编译好的通用二进制文件安装" class="headerlink" title="centos7 mysql5.7.14编译好的通用二进制文件安装"></a>centos7 mysql5.7.14编译好的通用二进制文件安装</h2><p>myql下载地址：<a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">选择 Linux - Generic</div><div class="line">Linux - Generic (glibc 2.5) (x86, 64-bit), Compressed TAR Archive</div><div class="line">mysql-5.7.14-linux-glibc2.5-x86_64.tar.gz</div><div class="line"></div><div class="line">通过官方编译好的二进制文件tar.gz压缩包安装较为简单</div><div class="line">将下面的源码编译安装中的安装步骤中的2，3步骤换为</div><div class="line">将mysql安装文件复制到默认的安装路径下</div><div class="line">$ mv /mysql-5.7.14-linux-glibc2.5-x86_64.tar.gz /usr/local</div><div class="line">$ tar -zvxf mysql-5.7.14-linux-glibc2.5-x86_64.tar.gz</div><div class="line">将减压后的文件夹更名为mysql</div><div class="line">$ mv mysql-5.7.14-linux-glibc2.5-x86_64 mysql</div><div class="line">然后从第4步开始操作，</div><div class="line">第6步的初始化数据库，默认的数据存放路径为安装路径的data文件夹下</div><div class="line">$ /usr/local/mysql/bin/mysqld --initialize-insecure --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data</div><div class="line"></div><div class="line">备注：</div><div class="line">如果改变默认安装路径，则需要 修改</div><div class="line">/my.cnf，/etc/init.d/mysqld（/usr/local/mysql/support-files/mysql.serve的副本启动文件）中的 </div><div class="line">basedir=&apos;&apos;和datadir=&apos;&apos;路径</div></pre></td></tr></table></figure></p>
+<p>=====================================================================</p>
+<h2 id="centos-7-msql5-7-14源码编译安装"><a href="#centos-7-msql5-7-14源码编译安装" class="headerlink" title="centos 7 msql5.7.14源码编译安装"></a>centos 7 msql5.7.14源码编译安装</h2><h3 id="1-下载所需安装包"><a href="#1-下载所需安装包" class="headerlink" title="1.下载所需安装包"></a>1.下载所需安装包</h3><p>myql下载地址：<a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">选择 Source Code</div><div class="line">Generic Linux (Architecture Independent), Compressed TAR Archive Includes Boost Headers</div><div class="line">mysql-boost-5.7.14.tar.gz</div><div class="line">说明：5.7以后必须要有Boost的支持，所以之间下载包含boost的源码。</div></pre></td></tr></table></figure></p>
+<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">1.检查是否已经安装过mysql</div><div class="line">$ rpm -qa | grep mysql</div><div class="line">有的话卸载以前安装的mysql</div><div class="line">$ rpm -e --nodeps xxx （xxx 是搜索结果）</div><div class="line">删除所有相关文件（例如：/etc/my.cnf）</div><div class="line"></div><div class="line">注意centos 7 默认在/etc下有my.cnf文件将这个改名或删除，</div><div class="line">不然mysql启动会先加载/etc下的my.cnf文件导致，mysql启动失败</div><div class="line">例如</div><div class="line">$ mv /etc/my.cnf /etc/my.cnf.back</div><div class="line"></div><div class="line">2.安装编译代码的依赖包</div><div class="line">$ yum -y install make gcc-c++ cmake bison-devel ncurses-devel libaio</div><div class="line">$ yum install libaio libaio-devel -y</div><div class="line">$ yum install perl-Data-Dumper -y</div><div class="line">$ yum install net-tools -y</div><div class="line"></div><div class="line">3.加压缩并安装</div><div class="line">$ tar -zvxf mysql-boost-5.7.14.tar.gz</div><div class="line">$ cd mysql-5.7.14</div><div class="line">$ cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \</div><div class="line">-DMYSQL_DATADIR=/data/mysql \</div><div class="line">-DDOWNLOAD_BOOST=1 \</div><div class="line">-DWITH_BOOST=./boost \</div><div class="line">-DSYSCONFDIR=/etc \</div><div class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_PARTITION_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_FEDERATED_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_BLACKHOLE_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_MYISAM_STORAGE_ENGINE=1 \</div><div class="line">-DENABLED_LOCAL_INFILE=1 \</div><div class="line">-DENABLE_DTRACE=0 \</div><div class="line">-DDEFAULT_CHARSET=utf8mb4 \</div><div class="line">-DDEFAULT_COLLATION=utf8mb4_general_ci \</div><div class="line">-DWITH_EMBEDDED_SERVER=1</div><div class="line">$ make</div><div class="line">$ make install</div><div class="line"></div><div class="line">4.配置mysql</div><div class="line"></div><div class="line">检查系统是否已经有mysql用户，如果没有则创建</div><div class="line">$ cat /etc/passwd | grep mysql</div><div class="line">$ cat /etc/group | grep mysql</div><div class="line"></div><div class="line">创建mysql用户组用户组</div><div class="line">$ useradd -M -s /sbin/nologin mysql</div><div class="line">$ useradd -g mysql mysql</div><div class="line"></div><div class="line">在/usr/local/mysql目录下添加my.cnf配置文件，配置内容在本文档最底部。</div><div class="line">注意 mysql先从/etc目录下读取my.cnf，所以/etc目录有这个文件的时候此配置失效</div><div class="line"></div><div class="line">修改权限</div><div class="line">$ chown -R mysql:mysql /usr/local/mysql</div><div class="line">$ chown -R mysql:mysql /data/mysql</div><div class="line"></div><div class="line">5.设置开机自启动</div><div class="line">$ cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld</div><div class="line">$ chmod +x /etc/init.d/mysqld</div><div class="line">$ chkconfig --add mysqld</div><div class="line">$ chkconfig mysqld on</div><div class="line"></div><div class="line">6.初始化数据库</div><div class="line">$ /usr/local/mysql/bin/mysqld --initialize-insecure --user=mysql --basedir=/usr/local/mysql --datadir=/data/mysql</div><div class="line"></div><div class="line">7.启动mysql</div><div class="line">$ service mysqld start</div><div class="line"></div><div class="line">8.设置root密码，添加一个用户并支持远程访问</div><div class="line">$ ./mysql</div><div class="line">mysql&gt; set password=password(&apos;925&apos;);</div><div class="line">mysql&gt; grant all on *.* to dba_user@&apos;%&apos; identified by &apos;925&apos;;</div><div class="line">mysql&gt; flush privileges;</div><div class="line">mysql&gt; select user,host,authentication_string from mysql.user;</div></pre></td></tr></table></figure>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">启动服务</div><div class="line">service mysqld start</div><div class="line">关闭服务</div><div class="line">service mysqld stop</div><div class="line">``` </div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">### my.cnf</div></pre></td></tr></table></figure>
+<p>[client]<br>port = 3306<br>socket = /tmp/mysql.sock<br>default-character-set = utf8mb4<br>[mysqld]<br>port = 3306<br>socket = /tmp/mysql.sock<br>basedir = /usr/local/mysql<br>datadir = /data/mysql<br>pid-file = /data/mysql/mysql.pid<br>user = mysql<br>bind-address = 0.0.0.0<br>server-id = 1<br>init-connect = ‘SET NAMES utf8mb4’<br>character-set-server = utf8mb4</p>
+<p>#skip-name-resolve</p>
+<p>#skip-networking<br>back_log = 300<br>max_connections = 1000<br>max_connect_errors = 6000<br>open_files_limit = 65535<br>table_open_cache = 128<br>max_allowed_packet = 4M<br>binlog_cache_size = 1M<br>max_heap_table_size = 8M<br>tmp_table_size = 16M<br>read_buffer_size = 2M<br>read_rnd_buffer_size = 8M<br>sort_buffer_size = 8M<br>join_buffer_size = 8M<br>key_buffer_size = 4M<br>thread_cache_size = 8<br>query_cache_type = 1<br>query_cache_size = 8M<br>query_cache_limit = 2M<br>ft_min_word_len = 4<br>log_bin = mysql-bin<br>binlog_format = mixed<br>expire_logs_days = 30<br>log_error = /data/mysql/mysql-error.log<br>slow_query_log = 1<br>long_query_time = 1<br>slow_query_log_file = /data/mysql/mysql-slow.log<br>performance_schema = 0<br>explicit_defaults_for_timestamp</p>
+<p>#lower_case_table_names = 1<br>skip-external-locking<br>default_storage_engine = InnoDB</p>
+<p>#default-storage-engine = MyISAM<br>innodb_file_per_table = 1<br>innodb_open_files = 500<br>innodb_buffer_pool_size = 64M<br>innodb_write_io_threads = 4<br>innodb_read_io_threads = 4<br>innodb_thread_concurrency = 0<br>innodb_purge_threads = 1<br>innodb_flush_log_at_trx_commit = 2<br>innodb_log_buffer_size = 2M<br>innodb_log_file_size = 32M<br>innodb_log_files_in_group = 3<br>innodb_max_dirty_pages_pct = 90<br>innodb_lock_wait_timeout = 120<br>bulk_insert_buffer_size = 8M<br>myisam_sort_buffer_size = 8M<br>myisam_max_sort_file_size = 10G<br>myisam_repair_threads = 1<br>interactive_timeout = 28800<br>wait_timeout = 28800<br>[mysqldump]<br>quick<br>max_allowed_packet = 16M<br>[myisamchk]<br>key_buffer_size = 8M<br>sort_buffer_size = 8M<br>read_buffer = 4M<br>write_buffer = 4M<br>```</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/29/centos7/centos7 安装 nginx/" itemprop="url">
+                  centos7 安装 nginx
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T09:38:50+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="cnetos7-nginx编译安装"><a href="#cnetos7-nginx编译安装" class="headerlink" title="cnetos7 nginx编译安装"></a>cnetos7 nginx编译安装</h2><h3 id="1、安装nginx编译环境"><a href="#1、安装nginx编译环境" class="headerlink" title="1、安装nginx编译环境"></a>1、安装nginx编译环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum install gcc-c++</div><div class="line">$ yum install pcre pcre-devel</div><div class="line">$ yum install zlib zlib-devel</div><div class="line">$ yum install openssl openssl-devel</div></pre></td></tr></table></figure>
+<h3 id="2、下载nginx（我使用的版本是1-9-12）"><a href="#2、下载nginx（我使用的版本是1-9-12）" class="headerlink" title="2、下载nginx（我使用的版本是1.9.12）"></a>2、下载nginx（我使用的版本是1.9.12）</h3><p>nginx下载地址：<a href="http://nginx.org/" target="_blank" rel="external">http://nginx.org/</a><br>nginx-rtmp-module 下载地址：<a href="https://github.com/arut/nginx-rtmp-module" target="_blank" rel="external">https://github.com/arut/nginx-rtmp-module</a><br>将 nginx-1.9.12.tar.gz、nginx-rtmp-module-master.zip 放在/user/local下</p>
+<h3 id="3、解压、编译、安装（如果不需要rtmp服务，可以不在configure中加入nginx-rtmp-module-master模块）"><a href="#3、解压、编译、安装（如果不需要rtmp服务，可以不在configure中加入nginx-rtmp-module-master模块）" class="headerlink" title="3、解压、编译、安装（如果不需要rtmp服务，可以不在configure中加入nginx-rtmp-module-master模块）"></a>3、解压、编译、安装（如果不需要rtmp服务，可以不在configure中加入nginx-rtmp-module-master模块）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ tar -zxvf nginx-1.9.12.tar.gz</div><div class="line">$ unzip nginx-rtmp-module-master.zip</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> nginx-1.9.12</div><div class="line">$ ./configure --add-module=/usr/<span class="built_in">local</span>/nginx-rtmp-module-master --with-http_flv_module --with-http_mp4_module --with-http_ssl_module --with-http_stub_status_module --with-http_gzip_static_module</div></pre></td></tr></table></figure>
+<p>如果没有error信息，就可以执行下边的安装了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ make</div><div class="line">$ make install</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ whereis nginx   <span class="comment">#默认安装在了/user/local下</span></div></pre></td></tr></table></figure>
+<h3 id="4、nginx-常用命令"><a href="#4、nginx-常用命令" class="headerlink" title="4、nginx 常用命令"></a>4、nginx 常用命令</h3><p>进入<code>/user/local/nginx/sbin</code>目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ ./nginx   <span class="comment">#启动</span></div><div class="line">$ ./nginx <span class="_">-s</span> stop   <span class="comment">#停止</span></div><div class="line">$ ./nginx <span class="_">-s</span> reload   <span class="comment">#重启</span></div><div class="line">$ ./nginx -t   <span class="comment">#检查配置文件是否正确</span></div><div class="line">$ ./nginx -V   <span class="comment">#查看已经添加的模块</span></div></pre></td></tr></table></figure>
+<p>根据进程停止nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ps -ef | grep nginx    <span class="comment">#查看进程</span></div><div class="line">$ <span class="built_in">kill</span> -QUIT 主进程号   <span class="comment">#从容停止</span></div><div class="line">$ <span class="built_in">kill</span> -TERM 主进程号   <span class="comment">#快速停止</span></div><div class="line">$ Nginx：pkill -9 主进程号   <span class="comment">#强行停止</span></div></pre></td></tr></table></figure>
+<h3 id="5、注册服务、开机启动"><a href="#5、注册服务、开机启动" class="headerlink" title="5、注册服务、开机启动"></a>5、注册服务、开机启动</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim /lib/systemd/system/nginx.service</div></pre></td></tr></table></figure>
+<p>创建此文件并编辑，将内容设置为如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[Unit]  </div><div class="line">Description=nginx  </div><div class="line">After=network.target </div><div class="line">   </div><div class="line">[Service]  </div><div class="line">Type=forking  </div><div class="line">ExecStart=/usr/<span class="built_in">local</span>/nginx/sbin/nginx</div><div class="line">ExecReload=/usr/<span class="built_in">local</span>/nginx/sbin/nginx <span class="_">-s</span> reload</div><div class="line">ExecStop=/usr/<span class="built_in">local</span>/nginx/sbin/nginx <span class="_">-s</span> stop</div><div class="line">PrivateTmp=<span class="literal">true</span>  </div><div class="line">   </div><div class="line">[Install]  </div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">添加执行权限</div><div class="line"># chmod 754 nginx.service</div><div class="line">设置开机自启动</div><div class="line"># systemctl enable nginx.service</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>[Unit]：服务的说明</li>
+<li>Description：描述服务</li>
+<li>After：描述服务类别</li>
+<li>[Service]：服务运行参数的设置</li>
+<li>Type=forking：是后台运行的形式</li>
+<li>ExecStart：服务的具体运行命令</li>
+<li>ExecReload：重启命令</li>
+<li>ExecStop：为停止命令</li>
+<li>PrivateTmp=True：表示给服务分配独立的临时空间</li>
+</ul>
+</blockquote>
+<p><strong>nginx服务常用命令(针对其他服务也适用)</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ systemctl <span class="built_in">enable</span> nginx.service   <span class="comment">#设为开机启动</span></div><div class="line">$ systemctl <span class="built_in">disable</span> nginx.service  <span class="comment">#取消开机启动</span></div><div class="line">$ systemctl start nginx.service   <span class="comment">#启动服务</span></div><div class="line">$ systemctl stop nginx.service   <span class="comment">#停止服务</span></div><div class="line">$ systemctl restart nginx.service   <span class="comment">#重启服务</span></div><div class="line">$ systemctl status nginx.service   <span class="comment">#查看服务状态</span></div><div class="line">$ systemctl list-units --type=service  <span class="comment">#查看已经启动的服务</span></div></pre></td></tr></table></figure>
+<h3 id="6、配置"><a href="#6、配置" class="headerlink" title="6、配置"></a>6、配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf</div></pre></td></tr></table></figure>
+<p>编辑配置文件，并加入以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">rtmp &#123;</div><div class="line">    server &#123;</div><div class="line">        listen 1935;</div><div class="line">        chunk_size 4096;</div><div class="line"></div><div class="line">	<span class="comment">#直播</span></div><div class="line">        application myapp &#123;</div><div class="line">            live on;</div><div class="line">        &#125;</div><div class="line">	</div><div class="line">	<span class="comment">#点播（/home/guom/video是视频存放的目录）</span></div><div class="line">	application vod &#123;</div><div class="line">		play /home/guom/video;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>完整配置文件如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#user  nobody;</span></div><div class="line">worker_processes  1;</div><div class="line"></div><div class="line"><span class="comment">#error_log  logs/error.log;</span></div><div class="line"><span class="comment">#error_log  logs/error.log  notice;</span></div><div class="line"><span class="comment">#error_log  logs/error.log  info;</span></div><div class="line"></div><div class="line"><span class="comment">#pid        logs/nginx.pid;</span></div><div class="line"></div><div class="line"></div><div class="line">events &#123;</div><div class="line">    worker_connections  1024;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">#加入rtmp</span></div><div class="line">rtmp &#123;</div><div class="line">    server &#123;</div><div class="line">        listen 1935;</div><div class="line">        chunk_size 4096;</div><div class="line"></div><div class="line">	<span class="comment">#直播</span></div><div class="line">        application myapp &#123;</div><div class="line">            live on;</div><div class="line">        &#125;</div><div class="line">	</div><div class="line">	<span class="comment">#点播</span></div><div class="line">	application vod &#123;</div><div class="line">		 play /home/guom/video;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">#以下配置不同管，默认的就行</span></div><div class="line">http &#123;</div><div class="line">    include       mime.types;</div><div class="line">    default_type  application/octet-stream;</div><div class="line"></div><div class="line">    <span class="comment">#log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '</span></div><div class="line">    <span class="comment">#                  '$status $body_bytes_sent "$http_referer" '</span></div><div class="line">    <span class="comment">#                  '"$http_user_agent" "$http_x_forwarded_for"';</span></div><div class="line"></div><div class="line">    <span class="comment">#access_log  logs/access.log  main;</span></div><div class="line"></div><div class="line">    sendfile        on;</div><div class="line">    <span class="comment">#tcp_nopush     on;</span></div><div class="line"></div><div class="line">    <span class="comment">#keepalive_timeout  0;</span></div><div class="line">    keepalive_timeout  65;</div><div class="line"></div><div class="line">    gzip  on;</div><div class="line">    <span class="comment">#gzip_http_version 1.0;</span></div><div class="line">    gzip_min_length  1024;</div><div class="line">    gzip_buffers  4 8k;</div><div class="line">    gzip_comp_level  3;</div><div class="line">    gzip_types  text/plain text/css application/x-javascript application/javascript application/xml;</div><div class="line">    gzip_disable <span class="string">"MSIE [1-6]\."</span>;</div><div class="line">    gzip_proxied any;</div><div class="line">    gzip_vary on; </div><div class="line"></div><div class="line">    autoindex on;</div><div class="line">    autoindex_exact_size off;</div><div class="line">    autoindex_localtime on;	</div><div class="line">	</div><div class="line">		</div><div class="line">    server &#123;</div><div class="line">        listen       80;</div><div class="line">        server_name  www.test.com;</div><div class="line"></div><div class="line">        <span class="comment">#charset koi8-r;</span></div><div class="line"></div><div class="line">        <span class="comment">#access_log  logs/host.access.log  main;</span></div><div class="line"></div><div class="line">       <span class="comment"># location / &#123;</span></div><div class="line">       <span class="comment">#     root   html;</span></div><div class="line">       <span class="comment">#     index  index.html index.htm;</span></div><div class="line">       <span class="comment"># &#125;</span></div><div class="line">	</div><div class="line">	location / &#123;</div><div class="line">		proxy_pass http://192.168.100.13:8080/;</div><div class="line">		<span class="comment">#websocket support</span></div><div class="line">		proxy_http_version 1.1;</div><div class="line">		proxy_set_header Upgrade <span class="variable">$http_upgrade</span>;</div><div class="line">		proxy_set_header Connection <span class="string">"upgrade"</span>;</div><div class="line">		</div><div class="line">		proxy_set_header  X-Real-IP  <span class="variable">$remote_addr</span>;</div><div class="line">		proxy_set_header  X-Forwarded-For  <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">		proxy_set_header  Host  <span class="variable">$http_host</span>;</div><div class="line"></div><div class="line">		proxy_connect_timeout 1200;      </div><div class="line">		proxy_read_timeout    1200;</div><div class="line">		proxy_send_timeout    1200; </div><div class="line"></div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	client_max_body_size 1024m;</div><div class="line"></div><div class="line"></div><div class="line">	location /<span class="built_in">test</span>/ &#123;</div><div class="line">                <span class="built_in">alias</span>   /home/guom/;</div><div class="line">        &#125;</div><div class="line">	</div><div class="line"></div><div class="line">        <span class="comment">#error_page  404              /404.html;</span></div><div class="line"></div><div class="line">        <span class="comment"># redirect server error pages to the static page /50x.html</span></div><div class="line">        <span class="comment">#</span></div><div class="line">        error_page   500 502 503 504  /50x.html;</div><div class="line">        location = /50x.html &#123;</div><div class="line">            root   html;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment"># proxy the PHP scripts to Apache listening on 127.0.0.1:80</span></div><div class="line">        <span class="comment">#</span></div><div class="line">        <span class="comment">#location ~ \.php$ &#123;</span></div><div class="line">        <span class="comment">#    proxy_pass   http://127.0.0.1;</span></div><div class="line">        <span class="comment">#&#125;</span></div><div class="line"></div><div class="line">        <span class="comment"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span></div><div class="line">        <span class="comment">#</span></div><div class="line">        <span class="comment">#location ~ \.php$ &#123;</span></div><div class="line">        <span class="comment">#    root           html;</span></div><div class="line">        <span class="comment">#    fastcgi_pass   127.0.0.1:9000;</span></div><div class="line">        <span class="comment">#    fastcgi_index  index.php;</span></div><div class="line">        <span class="comment">#    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span></div><div class="line">        <span class="comment">#    include        fastcgi_params;</span></div><div class="line">        <span class="comment">#&#125;</span></div><div class="line"></div><div class="line">        <span class="comment"># deny access to .htaccess files, if Apache's document root</span></div><div class="line">        <span class="comment"># concurs with nginx's one</span></div><div class="line">        <span class="comment">#</span></div><div class="line">        <span class="comment">#location ~ /\.ht &#123;</span></div><div class="line">        <span class="comment">#    deny  all;</span></div><div class="line">        <span class="comment">#&#125;</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment"># another virtual host using mix of IP-, name-, and port-based configuration</span></div><div class="line">    <span class="comment">#</span></div><div class="line">    <span class="comment">#server &#123;</span></div><div class="line">    <span class="comment">#    listen       8000;</span></div><div class="line">    <span class="comment">#    listen       somename:8080;</span></div><div class="line">    <span class="comment">#    server_name  somename  alias  another.alias;</span></div><div class="line"></div><div class="line">    <span class="comment">#    location / &#123;</span></div><div class="line">    <span class="comment">#        root   html;</span></div><div class="line">    <span class="comment">#        index  index.html index.htm;</span></div><div class="line">    <span class="comment">#    &#125;</span></div><div class="line">    <span class="comment">#&#125;</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment"># HTTPS server</span></div><div class="line">    <span class="comment">#</span></div><div class="line">    <span class="comment">#server &#123;</span></div><div class="line">    <span class="comment">#    listen       443 ssl;</span></div><div class="line">    <span class="comment">#    server_name  localhost;</span></div><div class="line"></div><div class="line">    <span class="comment">#    ssl_certificate      cert.pem;</span></div><div class="line">    <span class="comment">#    ssl_certificate_key  cert.key;</span></div><div class="line"></div><div class="line">    <span class="comment">#    ssl_session_cache    shared:SSL:1m;</span></div><div class="line">    <span class="comment">#    ssl_session_timeout  5m;</span></div><div class="line"></div><div class="line">    <span class="comment">#    ssl_ciphers  HIGH:!aNULL:!MD5;</span></div><div class="line">    <span class="comment">#    ssl_prefer_server_ciphers  on;</span></div><div class="line"></div><div class="line">    <span class="comment">#    location / &#123;</span></div><div class="line">    <span class="comment">#        root   html;</span></div><div class="line">    <span class="comment">#        index  index.html index.htm;</span></div><div class="line">    <span class="comment">#    &#125;</span></div><div class="line">    <span class="comment">#&#125;</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>到此为止大功告成了</strong></p>
+<p>备注：</p>
+<blockquote>
+<ul>
+<li>rtmp点播、nginx映射本地目录都必须确保需要映射的目录及其子目录的权限为755</li>
+<li>向服务器推流可选择ffmpeg或者obs等工具</li>
+<li>网页播放器可选择jwplayer等工具</li>
+</ul>
+</blockquote>
+
           
         
       
@@ -1269,7 +1425,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1277,7 +1433,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1286,7 +1442,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
