@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="标签," />
+  <meta name="keywords" content="linux," />
 
 
 
@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="Centos 系统服务;1234561.系统（system）服务,所在目录:/lib/systemd/system2.用户服务，所在目录:/usr/lib/systemd/区别：    系统服务开机没有登录就能运行。用户服务得用户登录后才能启动。
+例子123456789101112131415161718192021222324252627282930313233343536373839在系统服务">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://xwsky.github.io/2016/10/29/hello-world/index.html">
+<meta property="og:title" content="centos 添加服务">
+<meta property="og:url" content="https://xwsky.github.io/2016/10/29/centos 添加服务/index.html">
 <meta property="og:site_name" content="小桥流水">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-10-29T02:04:58.106Z">
+<meta property="og:description" content="Centos 系统服务;1234561.系统（system）服务,所在目录:/lib/systemd/system2.用户服务，所在目录:/usr/lib/systemd/区别：    系统服务开机没有登录就能运行。用户服务得用户登录后才能启动。
+例子123456789101112131415161718192021222324252627282930313233343536373839在系统服务">
+<meta property="og:updated_time" content="2016-10-29T05:07:54.441Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="centos 添加服务">
+<meta name="twitter:description" content="Centos 系统服务;1234561.系统（system）服务,所在目录:/lib/systemd/system2.用户服务，所在目录:/usr/lib/systemd/区别：    系统服务开机没有登录就能运行。用户服务得用户登录后才能启动。
+例子123456789101112131415161718192021222324252627282930313233343536373839在系统服务">
 
 
 
@@ -117,10 +117,10 @@ Quick">
 
 
 
-  <link rel="canonical" href="https://xwsky.github.io/2016/10/29/hello-world/"/>
+  <link rel="canonical" href="https://xwsky.github.io/2016/10/29/centos 添加服务/"/>
 
 
-  <title> Hello World | 小桥流水 </title>
+  <title> centos 添加服务 | 小桥流水 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -273,7 +273,7 @@ Quick">
             
             
               
-                Hello World
+                centos 添加服务
               
             
           </h1>
@@ -285,11 +285,30 @@ Quick">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-29T08:46:00+08:00" content="2016-10-29">
+            <time itemprop="dateCreated" datetime="2016-10-29T09:38:50+08:00" content="2016-10-29">
               2016-10-29
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CentOS/" itemprop="url" rel="index">
+                    <span itemprop="name">CentOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -313,15 +332,15 @@ Quick">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h3 id="Centos-系统服务"><a href="#Centos-系统服务" class="headerlink" title="Centos 系统服务;"></a>Centos 系统服务;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1.系统（system）服务,所在目录:/lib/systemd/system</div><div class="line">2.用户服务，所在目录:/usr/lib/systemd/</div><div class="line"></div><div class="line">区别：    </div><div class="line">系统服务开机没有登录就能运行。</div><div class="line">用户服务得用户登录后才能启动。</div></pre></td></tr></table></figure>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">在系统服务目录下新建nginx服务，文件需要以.service结尾。</div><div class="line">vi /lib/systemd/system/nginx.service</div><div class="line"></div><div class="line">添加如下内容</div><div class="line"></div><div class="line">[Unit]  </div><div class="line">Description=nginx  </div><div class="line">After=network.target  </div><div class="line">   </div><div class="line">[Service]  </div><div class="line">Type=forking  </div><div class="line">ExecStart=/www/lanmps/init.d/nginx start  </div><div class="line">ExecReload=/www/lanmps/init.d/nginx restart  </div><div class="line">ExecStop=/www/lanmps/init.d/nginx  stop  </div><div class="line">PrivateTmp=true  </div><div class="line">   </div><div class="line">[Install]  </div><div class="line">WantedBy=multi-user.target</div><div class="line"></div><div class="line">设置执行权限</div><div class="line">chmod 754 nginx.service</div><div class="line"></div><div class="line">设置开机启动</div><div class="line">systemctl enable nginx.service</div><div class="line"></div><div class="line">至此系统级的服务已经配置好了，下面是一些参数的说明</div><div class="line"></div><div class="line">================================参数说明================================</div><div class="line">[Unit]:服务的说明</div><div class="line">Description:描述服务</div><div class="line">After:描述服务类别</div><div class="line">[Service]服务运行参数的设置</div><div class="line">Type=forking是后台运行的形式</div><div class="line">ExecStart为服务的具体运行命令</div><div class="line">ExecReload为重启命令</div><div class="line">ExecStop为停止命令</div><div class="line">PrivateTmp=True表示给服务分配独立的临时空间</div><div class="line">注意：[Service]的启动、重启、停止命令全部要求使用绝对路径</div><div class="line">[Install]服务安装的相关设置，可设置为多用户</div></pre></td></tr></table></figure>
+<h3 id="系统服务命令"><a href="#系统服务命令" class="headerlink" title="系统服务命令"></a>系统服务命令</h3><p>1.设置服务开机自启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl enable httpd.service</div></pre></td></tr></table></figure></p>
+<p>2.设置服务开机不自启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl disable httpd.service</div></pre></td></tr></table></figure></p>
+<p>3.查看服务启动状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl status httpd.service （服务详细信息）</div></pre></td></tr></table></figure></p>
+<p>4.显示所有已启动的服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl is-active httpd.service （仅显示是否 Active)</div></pre></td></tr></table></figure></p>
+<p>5.启动某服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl start httpd.service</div></pre></td></tr></table></figure></p>
+<p>6.停止某服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl stop httpd.service</div></pre></td></tr></table></figure></p>
+<p>7.重启某服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart httpd.service</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -344,7 +363,7 @@ Quick">
       
         <div class="post-tags">
           
-            <a href="/tags/标签/" rel="tag">#标签</a>
+            <a href="/tags/linux/" rel="tag">#linux</a>
           
         </div>
       
@@ -357,8 +376,8 @@ Quick">
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/29/centos 添加服务（待实测）/" rel="prev" title="centos 添加服务（待实测）">
-                centos 添加服务（待实测） <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/29/CentOS7安装配置/" rel="prev" title="CentOS7安装配置">
+                CentOS7安装配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -427,7 +446,7 @@ Quick">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -444,7 +463,7 @@ Quick">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -473,7 +492,7 @@ Quick">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Centos-系统服务"><span class="nav-number">1.</span> <span class="nav-text">Centos 系统服务;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统服务命令"><span class="nav-number">3.</span> <span class="nav-text">系统服务命令</span></a></li></ol></div>
             
           </div>
         </section>
