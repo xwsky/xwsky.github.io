@@ -272,127 +272,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/29/CentOS7安装配置/" itemprop="url">
-                  CentOS7安装配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-29T09:38:50+08:00" content="2016-10-29">
-              2016-10-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="前提是系统已经安装就绪，此时除了root，其他账号没有sudo权限，使用root登陆系统"><a href="#前提是系统已经安装就绪，此时除了root，其他账号没有sudo权限，使用root登陆系统" class="headerlink" title="前提是系统已经安装就绪，此时除了root，其他账号没有sudo权限，使用root登陆系统"></a>前提是系统已经安装就绪，此时除了root，其他账号没有sudo权限，使用root登陆系统</h3><h3 id="1、设置主机名"><a href="#1、设置主机名" class="headerlink" title="1、设置主机名"></a>1、设置主机名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hostnamectl <span class="built_in">set</span>-hostname XXXXXX</div></pre></td></tr></table></figure>
-<p>或者编辑此文件进行设置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi /etc/hostname</div></pre></td></tr></table></figure></p>
-<h3 id="2、设置hosts"><a href="#2、设置hosts" class="headerlink" title="2、设置hosts"></a>2、设置hosts</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi /etc/hosts</div></pre></td></tr></table></figure>
-<p>将此文件改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">127.0.0.1    XXXXXX localhost</div><div class="line">#127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</div><div class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</div></pre></td></tr></table></figure></p>
-<h3 id="3、设置静态ip"><a href="#3、设置静态ip" class="headerlink" title="3、设置静态ip"></a>3、设置静态ip</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi /etc/sysconfig/network-scripts ifcfg-??????(名子不确定)</div></pre></td></tr></table></figure>
-<p>将<code>BOOTPROTO=dhcp</code>注释掉，并且设置<code>ONBOOT=yes</code><br>并且在文件最下面加入(根据自己实际情况)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">IPADDR=192.168.100.27	#IP</div><div class="line">GATEWAY=192.168.100.1	#默认网关</div><div class="line">NETMASK=255.255.255.0	#子网掩码</div><div class="line">DNS1=192.168.100.159	#DNS1</div><div class="line">DNS2=114.114.114.114	#DNS2</div></pre></td></tr></table></figure></p>
-<h3 id="4、设置sudo用户权限"><a href="#4、设置sudo用户权限" class="headerlink" title="4、设置sudo用户权限"></a>4、设置sudo用户权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ chmod u+w /etc/sudoers   <span class="comment">#将此文件设置为可写</span></div><div class="line">$ vi /etc/sudoers    <span class="comment">#找到 root ALL=(ALL) All, 在下面加入 XXXXX ALL=(ALL) ALL</span></div></pre></td></tr></table></figure>
-<h3 id="5、ssh连接"><a href="#5、ssh连接" class="headerlink" title="5、ssh连接"></a>5、ssh连接</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ service network restart   <span class="comment">#重启网络</span></div><div class="line">$ reboot   <span class="comment">#重启计算机</span></div><div class="line">$ ip addr   <span class="comment">#查看ip地址（此时还不能使用ifconfig）</span></div></pre></td></tr></table></figure>
-<p>重启成功后使用非root账号登陆<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ip addr   <span class="comment">#查看ip地址（此时还不能使用ifconfig）</span></div><div class="line">$ sudo yum install net-tools   <span class="comment">#安装网络工具</span></div><div class="line">$ ifconfig   <span class="comment">#可以使用ifconfig了，并且可以使用xshell等工具进行ssh连接了</span></div></pre></td></tr></table></figure></p>
-<h3 id="6、安装常用工具"><a href="#6、安装常用工具" class="headerlink" title="6、安装常用工具"></a>6、安装常用工具</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum install lrzsz</div><div class="line">$ yum install vim</div><div class="line">$ yum install wget</div><div class="line">$ yum install zip unzip</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/29/centos 添加服务/" itemprop="url">
                   centos 添加服务
                 </a>
@@ -466,6 +345,127 @@
 <p>6.停止某服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl stop httpd.service</div></pre></td></tr></table></figure></p>
 <p>7.重启某服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart httpd.service</div></pre></td></tr></table></figure></p>
 
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/29/CentOS7安装配置/" itemprop="url">
+                  CentOS7安装配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T09:38:50+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="前提是系统已经安装就绪，此时除了root，其他账号没有sudo权限，使用root登陆系统"><a href="#前提是系统已经安装就绪，此时除了root，其他账号没有sudo权限，使用root登陆系统" class="headerlink" title="前提是系统已经安装就绪，此时除了root，其他账号没有sudo权限，使用root登陆系统"></a>前提是系统已经安装就绪，此时除了root，其他账号没有sudo权限，使用root登陆系统</h3><h3 id="1、设置主机名"><a href="#1、设置主机名" class="headerlink" title="1、设置主机名"></a>1、设置主机名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hostnamectl <span class="built_in">set</span>-hostname XXXXXX</div></pre></td></tr></table></figure>
+<p>或者编辑此文件进行设置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi /etc/hostname</div></pre></td></tr></table></figure></p>
+<h3 id="2、设置hosts"><a href="#2、设置hosts" class="headerlink" title="2、设置hosts"></a>2、设置hosts</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi /etc/hosts</div></pre></td></tr></table></figure>
+<p>将此文件改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">127.0.0.1    XXXXXX localhost</div><div class="line">#127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</div><div class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</div></pre></td></tr></table></figure></p>
+<h3 id="3、设置静态ip"><a href="#3、设置静态ip" class="headerlink" title="3、设置静态ip"></a>3、设置静态ip</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi /etc/sysconfig/network-scripts ifcfg-??????(名子不确定)</div></pre></td></tr></table></figure>
+<p>将<code>BOOTPROTO=dhcp</code>注释掉，并且设置<code>ONBOOT=yes</code><br>并且在文件最下面加入(根据自己实际情况)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">IPADDR=192.168.100.27	#IP</div><div class="line">GATEWAY=192.168.100.1	#默认网关</div><div class="line">NETMASK=255.255.255.0	#子网掩码</div><div class="line">DNS1=192.168.100.159	#DNS1</div><div class="line">DNS2=114.114.114.114	#DNS2</div></pre></td></tr></table></figure></p>
+<h3 id="4、设置sudo用户权限"><a href="#4、设置sudo用户权限" class="headerlink" title="4、设置sudo用户权限"></a>4、设置sudo用户权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ chmod u+w /etc/sudoers   <span class="comment">#将此文件设置为可写</span></div><div class="line">$ vi /etc/sudoers    <span class="comment">#找到 root ALL=(ALL) All, 在下面加入 XXXXX ALL=(ALL) ALL</span></div></pre></td></tr></table></figure>
+<h3 id="5、ssh连接"><a href="#5、ssh连接" class="headerlink" title="5、ssh连接"></a>5、ssh连接</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ service network restart   <span class="comment">#重启网络</span></div><div class="line">$ reboot   <span class="comment">#重启计算机</span></div><div class="line">$ ip addr   <span class="comment">#查看ip地址（此时还不能使用ifconfig）</span></div></pre></td></tr></table></figure>
+<p>重启成功后使用非root账号登陆<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ip addr   <span class="comment">#查看ip地址（此时还不能使用ifconfig）</span></div><div class="line">$ sudo yum install net-tools   <span class="comment">#安装网络工具</span></div><div class="line">$ ifconfig   <span class="comment">#可以使用ifconfig了，并且可以使用xshell等工具进行ssh连接了</span></div></pre></td></tr></table></figure></p>
+<h3 id="6、安装常用工具"><a href="#6、安装常用工具" class="headerlink" title="6、安装常用工具"></a>6、安装常用工具</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum install lrzsz</div><div class="line">$ yum install vim</div><div class="line">$ yum install wget</div><div class="line">$ yum install zip unzip</div></pre></td></tr></table></figure>
           
         
       
