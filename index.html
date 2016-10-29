@@ -393,6 +393,382 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/29/maven/maven/" itemprop="url">
+                  maven学习笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T09:38:50+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/maven/" itemprop="url" rel="index">
+                    <span itemprop="name">maven</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="maven学习笔记"><a href="#maven学习笔记" class="headerlink" title="maven学习笔记"></a>maven学习笔记</h3><p><a href="#jump">点击跳转</a></p>
+<p>官方地址：<a href="http://maven.apache.org/" target="_blank" rel="external">http://maven.apache.org/</a></p>
+<p>1.使用Archetype生成项目骨架<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mvn archetype:generate</div><div class="line"></div><div class="line">选择 archetype原型编号默认是maven-archetype-quickstart</div><div class="line">根据提示输入要创建项目的groupId、artifactId、version以及包名package</div></pre></td></tr></table></figure></p>
+<p>2.依赖配置及说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line">&lt;dependencies&gt;</div><div class="line">	&lt;dependency&gt;</div><div class="line">		&lt;groupId&gt;...&lt;/groupId&gt; 组名称</div><div class="line">		&lt;artifactId&gt;...&lt;/artifactId&gt; 产品名称</div><div class="line">		&lt;version&gt;...&lt;/version&gt; 版本号</div><div class="line">		&lt;type&gt;...&lt;/type&gt; 依赖类型默认为jar</div><div class="line">		&lt;scope&gt;...&lt;/scope&gt; 依赖范围</div><div class="line">		&lt;optional&gt;...&lt;/optional&gt; 标记依赖是否可选</div><div class="line">		&lt;exclusions&gt; 用来排除传递性依赖</div><div class="line">			&lt;exclusion&gt;</div><div class="line">				&lt;groupId&gt;...&lt;/groupId&gt;</div><div class="line">				&lt;artifactId&gt;...&lt;/artifactId&gt;</div><div class="line">			&lt;/exclusion&gt;</div><div class="line">		&lt;/exclusions&gt;</div><div class="line">	&lt;/dependency&gt;</div><div class="line">&lt;/dependencies&gt;</div><div class="line"></div><div class="line">必须配置</div><div class="line">groupId、artifactId和version：依赖基本坐标</div><div class="line">可选配置</div><div class="line">type：依赖类型，默认值为jar，一般可省略。</div><div class="line">scope：依赖范围</div><div class="line">    依赖范围作用：用来控制依赖与三种classpath（编译classpath、测试classpath、运行classpath）的关系，</div><div class="line">    依赖范围准类：</div><div class="line">        compile：编译依赖范围，默认的依赖方位。对于编译、测试、运行三种classpath都有效。</div><div class="line">        test：测试依赖范围，只对测试classpath有效，如JUnit。</div><div class="line">        provided：已提供的依赖范围。对于编译和测试classpath有效，但在运行时无效。</div><div class="line">                如servlet-api（应用服务器有提供，maven无需重复地引入）</div><div class="line">        runtime：运行时依赖范围，对于测试和运行classpath有效，但在编译主代码时无效。如JDBC驱动。</div><div class="line">        system：系统依赖范围。和provided依赖范围相同，</div><div class="line">                但与要以&lt;systemPath&gt;$&#123;java.home&#125;/lib/rt.jar&lt;/systemPath&gt;引入本地maven仓库中没有的类库。</div><div class="line">                不可以移植。不建议使用该依赖范围。</div><div class="line">        import：导入依赖范围。不会对三种classpath产生实际的影响。</div><div class="line">                作用：将目标pom中的dependencyManagement配置导入并合并到当前POM的dependencyManagement元素中。</div><div class="line">                配置如下：</div><div class="line">                  &lt;dependencyManagement&gt;</div><div class="line">                  	&lt;dependencies&gt;</div><div class="line">                  		&lt;dependency&gt;</div><div class="line">                  			&lt;groupId&gt;... &lt;/groupId&gt;</div><div class="line">                  			&lt;artifactId&gt;... &lt;/artifactId&gt;</div><div class="line">                  			&lt;version&gt;... &lt;/version&gt;</div><div class="line">                  			&lt;type&gt;pom&lt;/type&gt;</div><div class="line">                  			&lt;scope&gt;import&lt;/scope&gt;</div><div class="line">                  		&lt;/dependency&gt;</div><div class="line">                  	&lt;/dependencies&gt;</div><div class="line">                  &lt;/dependencyManagement&gt; </div><div class="line"></div><div class="line">optional:可选依赖，例如：一个持久层隔离工具包，支持多种数据库，在构建时只会依赖一种数据库。</div><div class="line">        可以将多种数据库驱动设置为&lt;optional&gt;true&lt;/optional&gt;,该依赖只会对当前项目起作用。</div><div class="line">        这种依赖方式违背单一职责性原则。应将可选依赖拆分成maven项目引入。</div><div class="line">exclusions：用来排除传递性依赖，然后自己指定版本引入。</div><div class="line"></div><div class="line"></div><div class="line">依赖调解：</div><div class="line">    当传递性依赖引入发生冲突（多个版本时）时遵循的原则：</div><div class="line">    第一原则：路径最近者优先。</div><div class="line">    第二原则：第一声明者优先。</div><div class="line">    </div><div class="line">    </div><div class="line">依赖优化</div><div class="line">    通过 mvn dependency:list 命令可以查看maven已经解析的依赖。</div><div class="line">    通过 mvn dependency:tree 命令可以查看当前项目的依赖树。</div><div class="line">    通过 mvn dependency:analyze 工具可以帮助我们分析当前项目的依赖。</div><div class="line">        Used undeclared dependencies :项目中使用到的但是没有显示声明的依赖。</div><div class="line">        Unused declared dependencies :项目中未使用，但显示声明的依赖，</div><div class="line">        注意：dependency：analyze只会分析编译主代码和编译测试代码需要用到的依赖，</div><div class="line">            运行时需要的依赖不能检测，所以 Unused declared dependencies 的提示要人工判断是否可以删除。</div></pre></td></tr></table></figure></p>
+<p>3.maven仓库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line">1.分类：本地仓库和远程仓库。</div><div class="line">本地仓库</div><div class="line">    默认位置：用户目录\.m2\repository\</div><div class="line">    修改仓库位置~/.m2/settings.xml配置中添加&lt;localRepository&gt;d:\mavenRepository&lt;/localRepository&gt;</div><div class="line">    将构建添加到本地仓库：mvn clean install</div><div class="line">远程仓库</div><div class="line">    分类：中央仓库、私服、其他仓库</div><div class="line">    中央仓库：配置文件位置 $M2_HOME/lib/maven-model-builder-3.3.9.jar，org/apache/maven/model/pom-4.0.0.xml</div><div class="line">    私服：特殊的远程仓库。</div><div class="line">        优点：1.节省外网带宽。2.加速Maven构建。3.部署第三方构建。4.提高稳定性，增强控制。5.降低中央仓库负荷。</div><div class="line">    其他仓库：如Jboss，oracle等提供的maven仓库。</div><div class="line"></div><div class="line">2.连接到远程配置</div><div class="line">pom.xml中添加</div><div class="line">&lt;project&gt;</div><div class="line">  ...</div><div class="line">  &lt;repositories&gt;</div><div class="line">	&lt;repository&gt;</div><div class="line">		&lt;id&gt;mynexus&lt;/id&gt;</div><div class="line">		&lt;name&gt;mynexus&lt;/name&gt;</div><div class="line">		&lt;url&gt;http://localhost:8081/repository/maven-public/&lt;/url&gt;</div><div class="line">		&lt;releases&gt;&lt;enabled&gt;true&lt;/enabled&gt;&lt;/releases&gt;</div><div class="line">		&lt;snapshots&gt;&lt;enabled&gt;true&lt;/enabled&gt;&lt;/snapshots&gt;</div><div class="line">	&lt;/repository&gt;</div><div class="line">  &lt;/repositories&gt;</div><div class="line">  &lt;pluginRepositories&gt;</div><div class="line">	&lt;pluginRepository&gt;</div><div class="line">		&lt;id&gt;mynexus&lt;/id&gt;</div><div class="line">		&lt;name&gt;mynexus&lt;/name&gt;</div><div class="line">		&lt;url&gt;http://localhost:8081/repository/maven-public/&lt;/url&gt;</div><div class="line">		&lt;releases&gt;&lt;enabled&gt;true&lt;/enabled&gt;&lt;/releases&gt;</div><div class="line">		&lt;snapshots&gt;&lt;enabled&gt;true&lt;/enabled&gt;&lt;/snapshots&gt;</div><div class="line">	&lt;/pluginRepository&gt;</div><div class="line">  &lt;/pluginRepositories&gt;</div><div class="line">  ...</div><div class="line">&lt;/project&gt;</div><div class="line">如果需要登录认证需要在maven的setting.xml配置文件中添加,通过id关联，所以id名称必须一致。</div><div class="line">&lt;settings&gt;</div><div class="line">  ...</div><div class="line">  &lt;servers&gt;</div><div class="line">    &lt;server&gt;</div><div class="line">      &lt;id&gt;mynexus&lt;/id&gt;</div><div class="line">      &lt;username&gt;admin&lt;/username&gt;</div><div class="line">      &lt;password&gt;admin123&lt;/password&gt;</div><div class="line">    &lt;/server&gt;</div><div class="line">  &lt;/servers&gt;</div><div class="line">  ...</div><div class="line">&lt;/settings&gt;</div><div class="line"></div><div class="line">3.部署构建到远程仓库(如果需要认证在maven的setting.xml)</div><div class="line">&lt;project&gt;</div><div class="line">  ...</div><div class="line">  &lt;distributionManagement&gt;</div><div class="line">  	&lt;repository&gt;</div><div class="line">  		&lt;id&gt;mynexus&lt;/id&gt;</div><div class="line">  		&lt;name&gt;Release to mynexus&lt;/name&gt;</div><div class="line">  		&lt;url&gt;http://localhost:8081/repository/maven-releases/&lt;/url&gt;</div><div class="line">  	&lt;/repository&gt;</div><div class="line">  	&lt;snapshotRepository&gt;</div><div class="line">  		&lt;id&gt;mynexus&lt;/id&gt;</div><div class="line">  		&lt;name&gt;Snapshot to mynexus&lt;/name&gt;</div><div class="line">  		&lt;url&gt;http://localhost:8081/repository/maven-snapshots/&lt;/url&gt;</div><div class="line">  	&lt;/snapshotRepository&gt;</div><div class="line">  &lt;/distributionManagement&gt;</div><div class="line">  ...</div><div class="line">&lt;/project&gt;</div><div class="line"></div><div class="line">配置好执行 mvn clean deploy 命令，Maven会根据pom.xml中的&lt;version&gt;1.0&lt;/version&gt;值选择提交的仓库，</div><div class="line">以-SNAPSHOT结尾的表示是快照版本</div></pre></td></tr></table></figure></p>
+<p>4.镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">    如果仓库X可以提供仓库Y存储的所有内容，那么就可以认为X是Y的一个镜像。</div><div class="line"></div><div class="line">例：配置中央仓库镜像</div><div class="line">&lt;settings&gt;</div><div class="line">  ...</div><div class="line">  &lt;mirrors&gt;</div><div class="line">    &lt;mirror&gt;</div><div class="line">      &lt;id&gt;maven.net.cn&lt;/id&gt;</div><div class="line">      &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</div><div class="line">      &lt;name&gt;one of the central mirrors in China&lt;/name&gt;</div><div class="line">      &lt;url&gt;http://localhost:8081/repository/maven-public/&lt;/url&gt;</div><div class="line">    &lt;/mirror&gt;</div><div class="line">  &lt;/mirrors&gt;</div><div class="line">  ...</div><div class="line">&lt;/settings&gt;</div><div class="line"></div><div class="line">配置说明：</div><div class="line">&lt;mairrorOf&gt;&lt;/mirrorOf&gt; 匹配的仓库id。</div><div class="line"></div><div class="line">更多高级配置</div><div class="line"></div><div class="line">匹配所有远程仓库</div><div class="line">&lt;mairrorOf&gt;*&lt;/mirrorOf&gt;</div><div class="line">匹配所有远程仓库，使用localhost的除外使用file://协议的除外，即：匹配所有不在本机上远程仓库</div><div class="line">&lt;mairrorOf&gt;external:*&lt;/mirrorOf&gt;</div><div class="line">匹配仓库repo1和repo2，使用逗号分隔多个远程仓库</div><div class="line">&lt;mairrorOf&gt;repo1,repo2&lt;/mirrorOf&gt;</div><div class="line">匹配所有远程仓库，repo1除外。</div><div class="line">&lt;mairrorOf&gt;*,!repo1&lt;/mirrorOf&gt;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>Maven的生命周期</li>
+</ol>
+<p>官方地址：<a href="http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html" target="_blank" rel="external">http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">Maven具有三套相互独立的生命周期：clean生命周期，default生命周期，site生命周期。</div><div class="line"></div><div class="line">1.clean生命周期</div><div class="line">    目的：清理项目。</div><div class="line">    阶段1：pre-clean 执行一些清理前需要完成的工作。</div><div class="line">    阶段2：清理上一次构建生成的文件。</div><div class="line">    阶段3：执行一些清理后需要完成的工作。</div><div class="line"></div><div class="line">2.default生命周期</div><div class="line">    定义了真正构建是所需要执行的所有步骤。</div><div class="line">    阶段1：validate</div><div class="line">    阶段2：initialize</div><div class="line">    阶段3：generate-sources</div><div class="line">    阶段4：process-sources 处理项目主资源文件。一般来说，</div><div class="line">            是对src/main/resources目录的内容进行变量替换等工作后，复制到项目输出的主classpath目录中。</div><div class="line">    阶段5：generate-resources</div><div class="line">    阶段6：process-resources</div><div class="line">    阶段7：compile 编译项目的主源码。一般来说，是编译src/main/java目录下的java文件至项目输出的主classpath目录中</div><div class="line">    阶段8：process-classes</div><div class="line">    阶段9：generate-test-sources</div><div class="line">    阶段10：process-test-sources 处理项目测试资源文件。一般来说，是对src/test/resources目录的内容进行变量替换</div><div class="line">            等工作后，复制到项目输出的测试classpath目录中。</div><div class="line">    阶段11：generate-test-resources</div><div class="line">    阶段12：process-test-resources</div><div class="line">    阶段13：test-compile 编译项目的测试代码。一般来说，</div><div class="line">            是编译src/test/java目录下的java文件至项目输出的测试classpath目录中。</div><div class="line">    阶段14：process-test-classes</div><div class="line">    阶段15：test使用但远处而是框架运行测试，测试代码不会被打包或部署。</div><div class="line">    阶段16：prepare-package</div><div class="line">    阶段17：package 接收编译好的代码，打包成可发布的格式，如jar</div><div class="line">    阶段18：pre-integration-test</div><div class="line">    阶段19：integration-test</div><div class="line">    阶段20：post-integration-test</div><div class="line">    阶段21：verify</div><div class="line">    阶段22：install 将包安装到maven本地仓库，供本地其他Maven项目使用。</div><div class="line">    阶段23：deploy 将最终的包复制到远程仓库，供其他开发人员和Maven项目使用。</div><div class="line"></div><div class="line">3. site生命周期</div><div class="line">    目的：自动建立和发布项目站点。</div><div class="line">    阶段1：pre-site 执行一些在生成项目站点之前需要完成的工作。</div><div class="line">    阶段2：site 生成项目站点文档。</div><div class="line">    阶段3：site-deploy 将生成的项目站点腹部到服务器上。</div></pre></td></tr></table></figure></p>
+<p>6.命令行与生命周期。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">特别说明：Maven的各个生命周期是相互独立的，而一个生命周期的阶段是有前后依赖关系的。</div><div class="line"></div><div class="line">命令1：mvn clean:该命令调用clean生命周期的clean阶段。实际执行的阶段为clean生命周期的pre-clean和clean阶段。</div><div class="line">命令2：mvn test:该命令调用default生命周期的test阶段。实际执行的阶段为default生命周期的validate、initialize ...</div><div class="line">        直到test的所有阶段。</div><div class="line">命令3：mvn clean install：该命令调用clean生命周期的clean阶段和default生命周期的install阶段。</div><div class="line">命令4：mvn clean deploy site-deploy：该命令调用clean生命周期的clean阶段、default生命周期的deploy阶段，以及</div><div class="line">        site生命周期的所有阶段。</div></pre></td></tr></table></figure></p>
+<p>7.插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">Maven 的生命周期的阶段与插件的目标相互绑定，以完成某个具体的构建任务。</div><div class="line">绑定方式：内置绑定、自定义绑定。</div><div class="line">内置绑定：为了简化用户操作，Maven为主要的生命周期阶段绑定了很多插件的目标。</div><div class="line">自定义绑定：用户自己选择将某个插件目标绑定到生命周期的某个阶段。例打包源码插件配置：</div><div class="line">      &lt;build&gt;</div><div class="line">        ...</div><div class="line">        &lt;plugins&gt;</div><div class="line">        	&lt;plugin&gt;</div><div class="line">        		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</div><div class="line">        		&lt;artifactId&gt;maven-source-plugin&lt;/artifactId&gt;</div><div class="line">        		&lt;version&gt;2.1.1&lt;/version&gt;</div><div class="line">        		&lt;executions&gt;</div><div class="line">        			&lt;execution&gt;</div><div class="line">        				&lt;id&gt;attach-sources&lt;/id&gt;</div><div class="line">        				&lt;phase&gt;verify&lt;/phase&gt;</div><div class="line">    		    		&lt;goals&gt;</div><div class="line">    		    			&lt;goal&gt;jar-no-fork&lt;/goal&gt;</div><div class="line">    		    		&lt;/goals&gt;</div><div class="line">        			&lt;/execution&gt;</div><div class="line">        		&lt;/executions&gt;</div><div class="line">        	&lt;/plugin&gt;</div><div class="line">        &lt;/plugins&gt;</div><div class="line">        ...</div><div class="line">      &lt;/build&gt;</div><div class="line">      </div><div class="line">      phase：生命周期阶段</div><div class="line">      goal：插件目标</div></pre></td></tr></table></figure></p>
+<p>8.聚合与继承</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">聚合模块：</div><div class="line">    打包类型必须为pom类型 &lt;packaging&gt;pom&lt;/packaging&gt;</div><div class="line">    聚合模块和其他模块的目录结构分为父子关系和平行关系两种</div><div class="line">        平行关 聚合模块pom.xml添加如下格式内容</div><div class="line">        &lt;modules&gt;</div><div class="line">           &lt;module&gt;../fshop-common&lt;/module&gt;  </div><div class="line">           &lt;module&gt;../fshop-provider&lt;/module&gt;</div><div class="line">           &lt;module&gt;模块相对于聚合莫空pom.xml所处目录名称&lt;/module&gt;</div><div class="line">       &lt;/modules&gt; </div><div class="line">       父子关系 聚合模块pom.xml添加如下格式内容</div><div class="line">        &lt;modules&gt;</div><div class="line">           &lt;module&gt;fshop-common&lt;/module&gt;  </div><div class="line">           &lt;module&gt;fshop-provider&lt;/module&gt;</div><div class="line">           &lt;module&gt;模块相对于聚合莫空pom.xml所处目录名称&lt;/module&gt;</div><div class="line">       &lt;/modules&gt; </div><div class="line">    约定：为了方便快速定位模块内容，模块所处目录名称应当与其artifactId一致</div><div class="line">    </div><div class="line">继承：</div><div class="line">    1.子pom引用父pom书写方式:</div><div class="line">    &lt;parent&gt;</div><div class="line">		&lt;groupId&gt;fshop-parent&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;fshop-parent&lt;/artifactId&gt;</div><div class="line">		&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;	</div><div class="line">		&lt;relativePath&gt;../fshop-parent/pom.xml&lt;/relativePath&gt;</div><div class="line">	&lt;/parent&gt;</div><div class="line">	</div><div class="line">	2.可继承的pom元素</div><div class="line">	    groupId: 项目组ID，项目坐标的核心元素</div><div class="line">	    version：项目版本，项目坐标的核心元素。</div><div class="line">	    description：项目的描述信息。</div><div class="line">	    organization：项目的组织信息。</div><div class="line">	    inceptionYear：项目的创建年份。</div><div class="line">	    url：项目的URL地址。</div><div class="line">	    developers：项目的开发者信息。</div><div class="line">	    contributors：项目的贡献者信息。</div><div class="line">	    distributionManagement：项目的部署配置。</div><div class="line">	    issueManagement：项目的缺陷跟踪系统信息。</div><div class="line">	    ciManagement：项目的持续集成系统信息。</div><div class="line">	    scm：项目的版本控制系统信息。</div><div class="line">	    mailingLists：项目的邮件列表信息。</div><div class="line">	    properties：自定义的Maven属性。</div><div class="line">	    dependencies：项目的依赖配置。</div><div class="line">	    dependencyManagement：项目的依赖管理配置。</div><div class="line">	    repositories：项目的仓库配置。</div><div class="line">	    build：包括项目的源码目录配置、输出目录配置、插件配置、插件管理配置等。</div><div class="line">	    reporting：包括项目的报告输出目录配置、报告插件配置等。</div><div class="line">	    </div><div class="line">	3.依赖管理：</div><div class="line">	    如果父pom中用dependencies方式配置依赖，则配置的依赖都会被引入到子项目。</div><div class="line">	    如果父pom中使用dependencyManagement方式引入依赖，则子项目中需要dependencies方式</div><div class="line">	        声明依赖groupId和artifactId即可，其他的配置会继承父pom</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/29/maven/nexus私服/" itemprop="url">
+                  nexus私服
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T09:38:50+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nexus/" itemprop="url" rel="index">
+                    <span itemprop="name">nexus</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="nexus私服"><a href="#nexus私服" class="headerlink" title="nexus私服"></a>nexus私服</h2><p>出色的maven私服。</p>
+<h3 id="官方下载地址"><a href="#官方下载地址" class="headerlink" title="官方下载地址"></a>官方下载地址</h3><p><a href="http://www.sonatype.com/download-oss-sonatype" target="_blank" rel="external">http://www.sonatype.com/download-oss-sonatype</a></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>以windows 压缩版为例：</p>
+<p>下载nexus-3.0.1-01-win64.zip</p>
+<p>1.解压压缩包。</p>
+<p>2.在bin目录新建start.bat文件，添加如下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nexus.exe /run</div></pre></td></tr></table></figure></p>
+<p>3.运行start.bat。即可使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">访问地址：http://localhost:8081</div><div class="line">默认管理员账号及密码：admin admin123</div></pre></td></tr></table></figure></p>
+<p>4.添加windows服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">将nexus/bin目录添加到path中</div><div class="line">添加服务 nexus.exe /install</div><div class="line">删除服务 nexus.exe /uninstall</div></pre></td></tr></table></figure></p>
+<p>特别说明，nexus3.0版本，默认情况下data文件夹存放用户的数据。如果需要备份只需要备份该文件夹即可。</p>
+<p>配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">bin/nexus.vmoptions文件中可以配置运行内存，数据，和零时数据存放的路径等配置。</div><div class="line">etc/org.sonatype.nexus.cfg 文件中可以配置端口号</div></pre></td></tr></table></figure></p>
+<h3 id="第三方jar安装命令"><a href="#第三方jar安装命令" class="headerlink" title="第三方jar安装命令"></a>第三方jar安装命令</h3><p>nexus3.0版本，需要用maven客户端使用命令方式上传第三方jar包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">mvn deploy:deploy-file -DgroupId=org.oracle -DartifactId=jdbc -Dversion=6 -Dpackaging=jar -DrepositoryId=mynexus -Dfile=D:\3rd\ojdbc6.jar -Durl=http://localhost:8081/repository/3rd-part/ -DgeneratePom=false</div><div class="line"></div><div class="line">说明：</div><div class="line">-DrepositoryId=mynexus  对应的就是Maven中settings.xml的认证配的名字。</div><div class="line">私服认证信息</div><div class="line">&lt;servers&gt;</div><div class="line">    &lt;server&gt;</div><div class="line">      &lt;id&gt;mynexus&lt;/id&gt;</div><div class="line">      &lt;username&gt;admin&lt;/username&gt;</div><div class="line">      &lt;password&gt;admin123&lt;/password&gt;</div><div class="line">    &lt;/server&gt;</div><div class="line">&lt;/servers&gt;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/29/maven/jenkins持续集成工具/" itemprop="url">
+                  jenkins 持续集成工具
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T09:38:50+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/jenkins/" itemprop="url" rel="index">
+                    <span itemprop="name">jenkins</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="jenkins"><a href="#jenkins" class="headerlink" title="jenkins"></a>jenkins</h2><h3 id="官方地址"><a href="#官方地址" class="headerlink" title="官方地址"></a>官方地址</h3><p><a href="https://jenkins.io/" target="_blank" rel="external">https://jenkins.io/</a></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>以2.7.2.war包为例<br>下载后得到jenkins.war包，</p>
+<p>1.将jenkins.war包剪切到安装目录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">F:\jenkins</div></pre></td></tr></table></figure></p>
+<p>2.在该目录下新建start.bat文件并添加如下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">set JENKINS_HOME=F:\jenkins</div><div class="line">cd /d %JENKINS_HOME%</div><div class="line">java -jar %JENKINS_HOME%\jenkins.war --httpPort=9191</div></pre></td></tr></table></figure>
+<p>3.运行start.bat。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">访问地址：http://localhost:9191</div></pre></td></tr></table></figure></p>
+<p>4.初次登陆，需要初始化系统，控制台有提供初始化key</p>
+<p>5.输入key后会进入到一个可以选择常用插件自动安装的选项。</p>
+<p>6.管理员账号信息输入。</p>
+<p>配置：</p>
+<p> 系统管理-系统设置</p>
+<p> 系统管理-Global Tool Configuration 配置maven和jdk等</p>
+<h2 id="构建任务例子"><a href="#构建任务例子" class="headerlink" title="构建任务例子"></a>构建任务例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">目标，实现对一个svn库中的一个maven web项目，每10分钟检测一次svn库内容进行检测，如果检测到代码有变化则</div><div class="line">触发构建任务，将maven项目打包成war包，并自动部署到远程tomcat中。</div></pre></td></tr></table></figure>
+<p>0.准备工作</p>
+<p>系统管理-管理插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">安装jenkins将web.war包部署至远程tomcat的插件</div><div class="line">Deploy to container Plugin</div><div class="line"></div><div class="line">tomcat config/tomcat-users.xml中添加</div><div class="line">  &lt;role rolename=&quot;manager-gui&quot;/&gt;  </div><div class="line">  &lt;role rolename=&quot;manager-script&quot;/&gt;  </div><div class="line">  &lt;role rolename=&quot;manager-jmx&quot;/&gt;  </div><div class="line">  &lt;role rolename=&quot;manager-status&quot;/&gt;   </div><div class="line">  &lt;user username=&quot;mytomcat3&quot; password=&quot;tomcat&quot; roles=&quot;manager-gui,manager-script,manager-jmx,manager-status&quot;/&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="步骤描述"><a href="#步骤描述" class="headerlink" title="步骤描述"></a>步骤描述</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">1.在首页点击 新建</div><div class="line">2.输入构建任务名称，选择：构建一个自由风格的软件项目</div><div class="line">3.源码管理处选择 Subversion （输入svn地址和用户名和密码）</div><div class="line">4.构建触发器处选择 Poll SCM 输入 H/10 * * * *</div><div class="line">5.构建处选择 配置好的maven ；Goals clean package</div><div class="line">6.构建后操作 Deploy war/ear to a container</div><div class="line">    war/ear files : demo3/target/demo3.war 此路径的完成路径是jenkins安装目录/workspace/构建任务名称demo3/target/demo3.war</div><div class="line">选择tomcat 7.x 输入用户名和密码，及tomcat url地址。</div><div class="line"></div><div class="line">7.保存后点击  立即构建 然后点击构建历史中正在构建版本 Console Output 中可以看到构建的过程。</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/29/centos7/centos 7 jdk环境变量设置/" itemprop="url">
                   centos 7 jdk环境变量设置
                 </a>
@@ -752,127 +1128,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/29/centos7/centos7 安装 oracle11.2/" itemprop="url">
-                  centos7 安装 oracle11.2
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-29T09:38:50+08:00" content="2016-10-29">
-              2016-10-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/oracle/" itemprop="url" rel="index">
-                    <span itemprop="name">oracle</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="CentOS7安装oracle11-2-0-1-0数据库"><a href="#CentOS7安装oracle11-2-0-1-0数据库" class="headerlink" title="CentOS7安装oracle11.2.0.1.0数据库"></a>CentOS7安装oracle11.2.0.1.0数据库</h2><p>1.下载安装包</p>
-<p>官方地址<br><a href="http://www.oracle.com/technetwork/database/enterprise-edition/downloads/112010-linx8664soft-100572.html" target="_blank" rel="external">http://www.oracle.com/technetwork/database/enterprise-edition/downloads/112010-linx8664soft-100572.html</a></p>
-<p>2.CnetOS系统环境设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line">1.修改主机名称（可省略）</div><div class="line">$ vi /etc/hostname</div><div class="line"></div><div class="line">2.在/etc/hosts文件中添加主机名</div><div class="line">如：</div><div class="line">127.0.0.1   CentOS7 localhost</div><div class="line">#127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</div><div class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</div><div class="line">192.168.100.29 CentOS7</div><div class="line"></div><div class="line">3.安装oracle 11gr2依赖包</div><div class="line">yum install gcc make binutils gcc-c++ compat-libstdc++-33 elfutils-libelf-devel elfutils-libelf-devel-static ksh libaio libaio-devel numactl-devel sysstat unixODBC unixODBC-devel pcre-devel –y</div><div class="line"></div><div class="line">4.添加安装用户和用户组</div><div class="line"># groudadd oinstall</div><div class="line"># groupadd dba</div><div class="line"># useradd -g oinstall -G dba oracle</div><div class="line"># id oracle</div><div class="line">uid=1001(oracle) gid=1001(oinstall) groups=1001(oinstall),1002(dba)</div><div class="line"></div><div class="line">5.修改内核参数配置文件</div><div class="line"># vim /etc/sysctl.conf</div><div class="line">添加如下内容</div><div class="line">fs.aio-max-nr = 1048576</div><div class="line">fs.file-max = 6815744</div><div class="line">kernel.shmall = 2097152</div><div class="line">kernel.shmmax = 1073741824</div><div class="line">kernel.shmmni = 4096</div><div class="line">kernel.sem = 250 32000 100 128</div><div class="line">net.ipv4.ip_local_port_range = 9000 65500</div><div class="line">net.core.rmem_default = 262144</div><div class="line">net.core.rmem_max = 4194304</div><div class="line">net.core.wmem_default = 262144</div><div class="line">net.core.wmem_max = 1048576</div><div class="line"></div><div class="line">其中kernel.shmmax = 1073741824为本机物理内存（2G）的一半，单位为byte。</div><div class="line"></div><div class="line"># sysctl -p</div><div class="line"></div><div class="line">6.修改用户的限制文件</div><div class="line"># vim /etc/security/limits.conf</div><div class="line">添加以下内容</div><div class="line">oracle           soft    nproc           2047</div><div class="line">oracle           hard    nproc           16384</div><div class="line">oracle           soft    nofile          1024</div><div class="line">oracle           hard    nofile          65536</div><div class="line">oracle           soft    stack           10240</div><div class="line"></div><div class="line">修改/etc/pam.d/login文件：</div><div class="line"># vim /etc/pam.d/login</div><div class="line">添加以下内容：</div><div class="line">session  required   /lib64/security/pam_limits.so</div><div class="line">session  required   pam_limits.so</div><div class="line"></div><div class="line">修改/etc/profile文件：</div><div class="line"># vim /etc/profile</div><div class="line">添加以下内容：</div><div class="line">if [ $USER = &quot;oracle&quot; ]; then</div><div class="line">  if [ $SHELL = &quot;/bin/ksh&quot; ]; then</div><div class="line">   ulimit -p 16384</div><div class="line">   ulimit -n 65536</div><div class="line">  else</div><div class="line">   ulimit -u 16384 -n 65536</div><div class="line">  fi</div><div class="line">fi</div><div class="line"></div><div class="line">7.创建安装目录和设置文件权限</div><div class="line"># mkdir -p /u01/app/oracle/product/11.2.0</div><div class="line"># mkdir /u01/app/oracle/oradata</div><div class="line"># mkdir /u01/app/oracle/inventory</div><div class="line"># mkdir /u01/app/oracle/fast_recovery_area</div><div class="line"># chown -R oracle:oinstall /u01/app/oracle</div><div class="line"># chmod -R 775 /u01/app/oracle</div><div class="line"></div><div class="line">8.设置oracle用户环境变量</div><div class="line"># su - oracle</div><div class="line">$ vim .bash_profile</div><div class="line">添加如下内容</div><div class="line">ORACLE_BASE=/u01/app/oracle</div><div class="line">ORACLE_HOME=$ORACLE_BASE/product/11.2.0</div><div class="line">ORACLE_SID=orcl</div><div class="line">PATH=$PATH:$ORACLE_HOME/bin</div><div class="line">export ORACLE_BASE ORACLE_HOME ORACLE_SID PATH</div></pre></td></tr></table></figure></p>
-<p>3.安装文件准备</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">1.上传安装文件到/tmp目录</div><div class="line">2.解压</div><div class="line"># unzip linux.x64_11gR2_database_1of2.zip &amp;&amp; unzip linux.x64_11gR2_database_2of2.zip</div><div class="line"></div><div class="line">3.编辑静默安装文件</div><div class="line"># su - oracle</div><div class="line">$ cp -R /tmp/database/response/ .</div><div class="line">$ cd response/</div><div class="line">$ vim db_install.rsp</div><div class="line">需要设置的选项如下：</div><div class="line"></div><div class="line">oracle.install.option=INSTALL_DB_SWONLY</div><div class="line">ORACLE_HOSTNAME=CentOS</div><div class="line">UNIX_GROUP_NAME=oinstall</div><div class="line">INVENTORY_LOCATION=/u01/app/oracle/inventory</div><div class="line">SELECTED_LANGUAGES=en,zh_CN</div><div class="line">ORACLE_HOME=/u01/app/oracle/product/11.2.0</div><div class="line">ORACLE_BASE=/u01/app/oracle</div><div class="line">oracle.install.db.InstallEdition=EE</div><div class="line">oracle.install.db.DBA_GROUP=dba</div><div class="line">oracle.install.db.OPER_GROUP=dba</div><div class="line">DECLINE_SECURITY_UPDATES=true</div></pre></td></tr></table></figure>
-<p>4.根据响应文件静默安装oracle11g<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$ cd /tmp/database/</div><div class="line">$ ./runInstaller -silent -responseFile /home/oracle/response/db_install.rsp -ignorePrereq</div><div class="line"></div><div class="line">开始Oracle在后台静默安装。安装过程中，如果提示[WARNING]不必理会，此时安装程序仍在后台进行，如果出现[FATAL]，则安装程序已经停止了。</div><div class="line">可以在以下位置找到本次安装会话的日志:</div><div class="line">/u01/app/oracle/inventory/logs/installActions2015-06-08_04-00-25PM.log</div><div class="line">可以切换终端执行top命令查看后台进程一直是在安装的，/u01目录也在不断增大，</div><div class="line">当出现以下提示时，代表安装成功：</div><div class="line"></div><div class="line">Successfully Setup Sofware.</div><div class="line"></div><div class="line">按照要求执行脚本。</div><div class="line">打开终端，以root身份登录，执行脚本：</div><div class="line">$ su</div><div class="line"># sh /u01/app/oracle/inventory/orainstRoot.sh</div><div class="line"># sh /u01/app/oracle/product/11.2.0/root.sh</div><div class="line"></div><div class="line">到此数据库安装完成</div></pre></td></tr></table></figure></p>
-<p>5.以静默方式配置监听<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ netca /silent /responsefile /home/oracle/response/netca.rsp</div><div class="line"></div><div class="line">成功运行后，在/u01/app/oracle/product/11.2.0/network/admin/中生成listener.ora和sqlnet.ora</div><div class="line">$ netstat -tnulp | grep 1521</div></pre></td></tr></table></figure></p>
-<p>6.以静默方式建立新库，同时也建立一个对应的实例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">$ vim /home/oracle/response/dbca.rsp</div><div class="line"></div><div class="line">设置以下参数：</div><div class="line">GDBNAME = &quot;orcl&quot;</div><div class="line">SID = &quot;orcl&quot;</div><div class="line">SYSPASSWORD = &quot;oracle&quot;</div><div class="line">SYSTEMPASSWORD = &quot;oracle&quot;</div><div class="line">SYSMANPASSWORD = &quot;oracle&quot;</div><div class="line">DBSNMPPASSWORD = &quot;oracle&quot;</div><div class="line">DATAFILEDESTINATION =/u01/app/oracle/oradata</div><div class="line">RECOVERYAREADESTINATION=/u01/app/oracle/fast_recovery_area</div><div class="line">CHARACTERSET = &quot;ZHS16GBK&quot;</div><div class="line">TOTALMEMORY = &quot;1638&quot;</div><div class="line"></div><div class="line">其中TOTALMEMORY = &quot;1638&quot; 为1638MB，物理内存2G*80%。</div><div class="line"></div><div class="line">进行静默配置：</div><div class="line">$ dbca -silent -responseFile /home/oracle/response/dbca.rsp</div><div class="line"></div><div class="line">建库后进行实例进程检查：</div><div class="line">$ ps -ef | grep ora_ | grep -v grep</div><div class="line"></div><div class="line">查看监听状态：</div><div class="line">$ lsnrctl status</div><div class="line"></div><div class="line">登录查看实例状态：</div><div class="line">$ sqlplus / as sysdba</div><div class="line">SQL&gt; select status from v$instance;</div></pre></td></tr></table></figure></p>
-<p>7.切换到root账户建立自启动脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">1.修改/u01/app/oracle/product/11.2.0/bin/dbstart</div><div class="line">$ vim /u01/app/oracle/product/11.2.0/bin/dbstart</div><div class="line">将ORACLE_HOME_LISTNER=$1修改为ORACLE_HOME_LISTNER=$ORACLE_HOME</div><div class="line"></div><div class="line">2.修改/u01/app/oracle/product/11.2.0/bin/dbshut</div><div class="line">$ vim /u01/app/oracle/product/11.2.0/bin/dbshut</div><div class="line">将ORACLE_HOME_LISTNER=$1修改为ORACLE_HOME_LISTNER=$ORACLE_HOME</div><div class="line"></div><div class="line">3.修改/etc/oratab文件</div><div class="line">[oracle@CentOS ~]$ vim /etc/oratab</div><div class="line">将orcl:/u01/app/oracle/product/11.2.0:N中最后的N改为Y，成为orcl:/u01/app/oracle/product/11.2.0:Y</div><div class="line"></div><div class="line">4.	输入命令dbshut和dbstart测试</div><div class="line">$ dbshut</div><div class="line">$ dbstart</div><div class="line"></div><div class="line">6.创建启动脚本</div><div class="line">$ su -</div><div class="line"># vim /etc/rc.d/init.d/oracle</div><div class="line"></div><div class="line">添加以下内容</div><div class="line"></div><div class="line">#!/bin/sh</div><div class="line"># chkconfig: 345 61 61</div><div class="line"># description: Oracle 11g R2 AutoRun Servimces</div><div class="line"># /etc/init.d/oracle</div><div class="line">#</div><div class="line"># Run-level Startup script for the Oracle Instance, Listener, and</div><div class="line"># Web Interface</div><div class="line"></div><div class="line">export ORACLE_BASE=/u01/app/oracle</div><div class="line">export ORACLE_HOME=$ORACLE_BASE/product/11.2.0</div><div class="line">export ORACLE_SID=orcl</div><div class="line">export PATH=$PATH:$ORACLE_HOME/bin</div><div class="line"></div><div class="line">ORA_OWNR=&quot;oracle&quot;</div><div class="line"></div><div class="line"># if the executables do not exist -- display error</div><div class="line"></div><div class="line">if [ ! -f $ORACLE_HOME/bin/dbstart -o ! -d $ORACLE_HOME ]</div><div class="line">then</div><div class="line">echo &quot;Oracle startup: cannot start&quot;</div><div class="line">exit 1</div><div class="line">fi</div><div class="line"></div><div class="line"># depending on parameter -- startup, shutdown, restart</div><div class="line"># of the instance and listener or usage display</div><div class="line"></div><div class="line">case &quot;$1&quot; in</div><div class="line">start)</div><div class="line"># Oracle listener and instance startup</div><div class="line">su $ORA_OWNR -lc $ORACLE_HOME/bin/dbstart</div><div class="line">echo &quot;Oracle Start Succesful!OK.&quot;</div><div class="line">;;</div><div class="line">stop)</div><div class="line"># Oracle listener and instance shutdown</div><div class="line">su $ORA_OWNR -lc $ORACLE_HOME/bin/dbshut</div><div class="line">echo &quot;Oracle Stop Succesful!OK.&quot;</div><div class="line">;;</div><div class="line">reload|restart)</div><div class="line">$0 stop</div><div class="line">$0 start</div><div class="line">;;</div><div class="line">*)</div><div class="line">echo $&quot;Usage: `basename $0` &#123;start|stop|reload|reload&#125;&quot;</div><div class="line">exit 1</div><div class="line">esac</div><div class="line">exit 0</div><div class="line"></div><div class="line">7.修改/etc/init.d/oracle服务文件权限</div><div class="line"># chmod 755 /etc/init.d/oracle</div><div class="line"></div><div class="line">8.设置开机自启动</div><div class="line"># chkconfig oracle on</div><div class="line"></div><div class="line">9.进行service oracle start/stop/restart测试</div><div class="line"></div><div class="line">10.重启系统，查看是否自启动成功</div><div class="line"># reboot</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/29/centos7/centos7 安装 nginx/" itemprop="url">
                   centos7 安装 nginx
                 </a>
@@ -1008,6 +1263,127 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/29/centos7/centos7 安装 oracle11.2/" itemprop="url">
+                  centos7 安装 oracle11.2
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T09:38:50+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/oracle/" itemprop="url" rel="index">
+                    <span itemprop="name">oracle</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="CentOS7安装oracle11-2-0-1-0数据库"><a href="#CentOS7安装oracle11-2-0-1-0数据库" class="headerlink" title="CentOS7安装oracle11.2.0.1.0数据库"></a>CentOS7安装oracle11.2.0.1.0数据库</h2><p>1.下载安装包</p>
+<p>官方地址<br><a href="http://www.oracle.com/technetwork/database/enterprise-edition/downloads/112010-linx8664soft-100572.html" target="_blank" rel="external">http://www.oracle.com/technetwork/database/enterprise-edition/downloads/112010-linx8664soft-100572.html</a></p>
+<p>2.CnetOS系统环境设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line">1.修改主机名称（可省略）</div><div class="line">$ vi /etc/hostname</div><div class="line"></div><div class="line">2.在/etc/hosts文件中添加主机名</div><div class="line">如：</div><div class="line">127.0.0.1   CentOS7 localhost</div><div class="line">#127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</div><div class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</div><div class="line">192.168.100.29 CentOS7</div><div class="line"></div><div class="line">3.安装oracle 11gr2依赖包</div><div class="line">yum install gcc make binutils gcc-c++ compat-libstdc++-33 elfutils-libelf-devel elfutils-libelf-devel-static ksh libaio libaio-devel numactl-devel sysstat unixODBC unixODBC-devel pcre-devel –y</div><div class="line"></div><div class="line">4.添加安装用户和用户组</div><div class="line"># groudadd oinstall</div><div class="line"># groupadd dba</div><div class="line"># useradd -g oinstall -G dba oracle</div><div class="line"># id oracle</div><div class="line">uid=1001(oracle) gid=1001(oinstall) groups=1001(oinstall),1002(dba)</div><div class="line"></div><div class="line">5.修改内核参数配置文件</div><div class="line"># vim /etc/sysctl.conf</div><div class="line">添加如下内容</div><div class="line">fs.aio-max-nr = 1048576</div><div class="line">fs.file-max = 6815744</div><div class="line">kernel.shmall = 2097152</div><div class="line">kernel.shmmax = 1073741824</div><div class="line">kernel.shmmni = 4096</div><div class="line">kernel.sem = 250 32000 100 128</div><div class="line">net.ipv4.ip_local_port_range = 9000 65500</div><div class="line">net.core.rmem_default = 262144</div><div class="line">net.core.rmem_max = 4194304</div><div class="line">net.core.wmem_default = 262144</div><div class="line">net.core.wmem_max = 1048576</div><div class="line"></div><div class="line">其中kernel.shmmax = 1073741824为本机物理内存（2G）的一半，单位为byte。</div><div class="line"></div><div class="line"># sysctl -p</div><div class="line"></div><div class="line">6.修改用户的限制文件</div><div class="line"># vim /etc/security/limits.conf</div><div class="line">添加以下内容</div><div class="line">oracle           soft    nproc           2047</div><div class="line">oracle           hard    nproc           16384</div><div class="line">oracle           soft    nofile          1024</div><div class="line">oracle           hard    nofile          65536</div><div class="line">oracle           soft    stack           10240</div><div class="line"></div><div class="line">修改/etc/pam.d/login文件：</div><div class="line"># vim /etc/pam.d/login</div><div class="line">添加以下内容：</div><div class="line">session  required   /lib64/security/pam_limits.so</div><div class="line">session  required   pam_limits.so</div><div class="line"></div><div class="line">修改/etc/profile文件：</div><div class="line"># vim /etc/profile</div><div class="line">添加以下内容：</div><div class="line">if [ $USER = &quot;oracle&quot; ]; then</div><div class="line">  if [ $SHELL = &quot;/bin/ksh&quot; ]; then</div><div class="line">   ulimit -p 16384</div><div class="line">   ulimit -n 65536</div><div class="line">  else</div><div class="line">   ulimit -u 16384 -n 65536</div><div class="line">  fi</div><div class="line">fi</div><div class="line"></div><div class="line">7.创建安装目录和设置文件权限</div><div class="line"># mkdir -p /u01/app/oracle/product/11.2.0</div><div class="line"># mkdir /u01/app/oracle/oradata</div><div class="line"># mkdir /u01/app/oracle/inventory</div><div class="line"># mkdir /u01/app/oracle/fast_recovery_area</div><div class="line"># chown -R oracle:oinstall /u01/app/oracle</div><div class="line"># chmod -R 775 /u01/app/oracle</div><div class="line"></div><div class="line">8.设置oracle用户环境变量</div><div class="line"># su - oracle</div><div class="line">$ vim .bash_profile</div><div class="line">添加如下内容</div><div class="line">ORACLE_BASE=/u01/app/oracle</div><div class="line">ORACLE_HOME=$ORACLE_BASE/product/11.2.0</div><div class="line">ORACLE_SID=orcl</div><div class="line">PATH=$PATH:$ORACLE_HOME/bin</div><div class="line">export ORACLE_BASE ORACLE_HOME ORACLE_SID PATH</div></pre></td></tr></table></figure></p>
+<p>3.安装文件准备</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">1.上传安装文件到/tmp目录</div><div class="line">2.解压</div><div class="line"># unzip linux.x64_11gR2_database_1of2.zip &amp;&amp; unzip linux.x64_11gR2_database_2of2.zip</div><div class="line"></div><div class="line">3.编辑静默安装文件</div><div class="line"># su - oracle</div><div class="line">$ cp -R /tmp/database/response/ .</div><div class="line">$ cd response/</div><div class="line">$ vim db_install.rsp</div><div class="line">需要设置的选项如下：</div><div class="line"></div><div class="line">oracle.install.option=INSTALL_DB_SWONLY</div><div class="line">ORACLE_HOSTNAME=CentOS</div><div class="line">UNIX_GROUP_NAME=oinstall</div><div class="line">INVENTORY_LOCATION=/u01/app/oracle/inventory</div><div class="line">SELECTED_LANGUAGES=en,zh_CN</div><div class="line">ORACLE_HOME=/u01/app/oracle/product/11.2.0</div><div class="line">ORACLE_BASE=/u01/app/oracle</div><div class="line">oracle.install.db.InstallEdition=EE</div><div class="line">oracle.install.db.DBA_GROUP=dba</div><div class="line">oracle.install.db.OPER_GROUP=dba</div><div class="line">DECLINE_SECURITY_UPDATES=true</div></pre></td></tr></table></figure>
+<p>4.根据响应文件静默安装oracle11g<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$ cd /tmp/database/</div><div class="line">$ ./runInstaller -silent -responseFile /home/oracle/response/db_install.rsp -ignorePrereq</div><div class="line"></div><div class="line">开始Oracle在后台静默安装。安装过程中，如果提示[WARNING]不必理会，此时安装程序仍在后台进行，如果出现[FATAL]，则安装程序已经停止了。</div><div class="line">可以在以下位置找到本次安装会话的日志:</div><div class="line">/u01/app/oracle/inventory/logs/installActions2015-06-08_04-00-25PM.log</div><div class="line">可以切换终端执行top命令查看后台进程一直是在安装的，/u01目录也在不断增大，</div><div class="line">当出现以下提示时，代表安装成功：</div><div class="line"></div><div class="line">Successfully Setup Sofware.</div><div class="line"></div><div class="line">按照要求执行脚本。</div><div class="line">打开终端，以root身份登录，执行脚本：</div><div class="line">$ su</div><div class="line"># sh /u01/app/oracle/inventory/orainstRoot.sh</div><div class="line"># sh /u01/app/oracle/product/11.2.0/root.sh</div><div class="line"></div><div class="line">到此数据库安装完成</div></pre></td></tr></table></figure></p>
+<p>5.以静默方式配置监听<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ netca /silent /responsefile /home/oracle/response/netca.rsp</div><div class="line"></div><div class="line">成功运行后，在/u01/app/oracle/product/11.2.0/network/admin/中生成listener.ora和sqlnet.ora</div><div class="line">$ netstat -tnulp | grep 1521</div></pre></td></tr></table></figure></p>
+<p>6.以静默方式建立新库，同时也建立一个对应的实例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">$ vim /home/oracle/response/dbca.rsp</div><div class="line"></div><div class="line">设置以下参数：</div><div class="line">GDBNAME = &quot;orcl&quot;</div><div class="line">SID = &quot;orcl&quot;</div><div class="line">SYSPASSWORD = &quot;oracle&quot;</div><div class="line">SYSTEMPASSWORD = &quot;oracle&quot;</div><div class="line">SYSMANPASSWORD = &quot;oracle&quot;</div><div class="line">DBSNMPPASSWORD = &quot;oracle&quot;</div><div class="line">DATAFILEDESTINATION =/u01/app/oracle/oradata</div><div class="line">RECOVERYAREADESTINATION=/u01/app/oracle/fast_recovery_area</div><div class="line">CHARACTERSET = &quot;ZHS16GBK&quot;</div><div class="line">TOTALMEMORY = &quot;1638&quot;</div><div class="line"></div><div class="line">其中TOTALMEMORY = &quot;1638&quot; 为1638MB，物理内存2G*80%。</div><div class="line"></div><div class="line">进行静默配置：</div><div class="line">$ dbca -silent -responseFile /home/oracle/response/dbca.rsp</div><div class="line"></div><div class="line">建库后进行实例进程检查：</div><div class="line">$ ps -ef | grep ora_ | grep -v grep</div><div class="line"></div><div class="line">查看监听状态：</div><div class="line">$ lsnrctl status</div><div class="line"></div><div class="line">登录查看实例状态：</div><div class="line">$ sqlplus / as sysdba</div><div class="line">SQL&gt; select status from v$instance;</div></pre></td></tr></table></figure></p>
+<p>7.切换到root账户建立自启动脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">1.修改/u01/app/oracle/product/11.2.0/bin/dbstart</div><div class="line">$ vim /u01/app/oracle/product/11.2.0/bin/dbstart</div><div class="line">将ORACLE_HOME_LISTNER=$1修改为ORACLE_HOME_LISTNER=$ORACLE_HOME</div><div class="line"></div><div class="line">2.修改/u01/app/oracle/product/11.2.0/bin/dbshut</div><div class="line">$ vim /u01/app/oracle/product/11.2.0/bin/dbshut</div><div class="line">将ORACLE_HOME_LISTNER=$1修改为ORACLE_HOME_LISTNER=$ORACLE_HOME</div><div class="line"></div><div class="line">3.修改/etc/oratab文件</div><div class="line">[oracle@CentOS ~]$ vim /etc/oratab</div><div class="line">将orcl:/u01/app/oracle/product/11.2.0:N中最后的N改为Y，成为orcl:/u01/app/oracle/product/11.2.0:Y</div><div class="line"></div><div class="line">4.	输入命令dbshut和dbstart测试</div><div class="line">$ dbshut</div><div class="line">$ dbstart</div><div class="line"></div><div class="line">6.创建启动脚本</div><div class="line">$ su -</div><div class="line"># vim /etc/rc.d/init.d/oracle</div><div class="line"></div><div class="line">添加以下内容</div><div class="line"></div><div class="line">#!/bin/sh</div><div class="line"># chkconfig: 345 61 61</div><div class="line"># description: Oracle 11g R2 AutoRun Servimces</div><div class="line"># /etc/init.d/oracle</div><div class="line">#</div><div class="line"># Run-level Startup script for the Oracle Instance, Listener, and</div><div class="line"># Web Interface</div><div class="line"></div><div class="line">export ORACLE_BASE=/u01/app/oracle</div><div class="line">export ORACLE_HOME=$ORACLE_BASE/product/11.2.0</div><div class="line">export ORACLE_SID=orcl</div><div class="line">export PATH=$PATH:$ORACLE_HOME/bin</div><div class="line"></div><div class="line">ORA_OWNR=&quot;oracle&quot;</div><div class="line"></div><div class="line"># if the executables do not exist -- display error</div><div class="line"></div><div class="line">if [ ! -f $ORACLE_HOME/bin/dbstart -o ! -d $ORACLE_HOME ]</div><div class="line">then</div><div class="line">echo &quot;Oracle startup: cannot start&quot;</div><div class="line">exit 1</div><div class="line">fi</div><div class="line"></div><div class="line"># depending on parameter -- startup, shutdown, restart</div><div class="line"># of the instance and listener or usage display</div><div class="line"></div><div class="line">case &quot;$1&quot; in</div><div class="line">start)</div><div class="line"># Oracle listener and instance startup</div><div class="line">su $ORA_OWNR -lc $ORACLE_HOME/bin/dbstart</div><div class="line">echo &quot;Oracle Start Succesful!OK.&quot;</div><div class="line">;;</div><div class="line">stop)</div><div class="line"># Oracle listener and instance shutdown</div><div class="line">su $ORA_OWNR -lc $ORACLE_HOME/bin/dbshut</div><div class="line">echo &quot;Oracle Stop Succesful!OK.&quot;</div><div class="line">;;</div><div class="line">reload|restart)</div><div class="line">$0 stop</div><div class="line">$0 start</div><div class="line">;;</div><div class="line">*)</div><div class="line">echo $&quot;Usage: `basename $0` &#123;start|stop|reload|reload&#125;&quot;</div><div class="line">exit 1</div><div class="line">esac</div><div class="line">exit 0</div><div class="line"></div><div class="line">7.修改/etc/init.d/oracle服务文件权限</div><div class="line"># chmod 755 /etc/init.d/oracle</div><div class="line"></div><div class="line">8.设置开机自启动</div><div class="line"># chkconfig oracle on</div><div class="line"></div><div class="line">9.进行service oracle start/stop/restart测试</div><div class="line"></div><div class="line">10.重启系统，查看是否自启动成功</div><div class="line"># reboot</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1049,7 +1425,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1057,7 +1433,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1066,7 +1442,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
