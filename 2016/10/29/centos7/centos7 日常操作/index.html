@@ -84,49 +84,19 @@
 
 
 
-<meta name="description" content="centos7 日常操作正常关机重启流程
-查看在线用户
-1$ sudo who
-
-网络的联机状态
-12$ sudo netstat -a如果没有netstat命令通过 $ yum install net-tools 安装
-
-将数据由内存同步到硬盘中
-1$ sudo sync
-
-如有其它用户在线，通知用户，并重启或关机
-12345十分钟后关机$ sudo shutdown –h 10十分钟后重启$">
+<meta name="description" content="正常关机重启流程1. 查看在线用户1$ sudo who
+2. 网络的联机状态12345678$ sudo netstat -a```bash## 3. 如果没有netstat命令通过 $ yum install net-tools 安装十分钟后关机$ sudo shutdown –h 10十分钟后重启$ sudo shutdown -r 10">
 <meta property="og:type" content="article">
 <meta property="og:title" content="centos 7 日常操作">
 <meta property="og:url" content="https://xwsky.github.io/2016/10/29/centos7/centos7 日常操作/index.html">
 <meta property="og:site_name" content="小桥流水">
-<meta property="og:description" content="centos7 日常操作正常关机重启流程
-查看在线用户
-1$ sudo who
-
-网络的联机状态
-12$ sudo netstat -a如果没有netstat命令通过 $ yum install net-tools 安装
-
-将数据由内存同步到硬盘中
-1$ sudo sync
-
-如有其它用户在线，通知用户，并重启或关机
-12345十分钟后关机$ sudo shutdown –h 10十分钟后重启$">
-<meta property="og:updated_time" content="2016-10-30T00:45:44.497Z">
+<meta property="og:description" content="正常关机重启流程1. 查看在线用户1$ sudo who
+2. 网络的联机状态12345678$ sudo netstat -a```bash## 3. 如果没有netstat命令通过 $ yum install net-tools 安装十分钟后关机$ sudo shutdown –h 10十分钟后重启$ sudo shutdown -r 10">
+<meta property="og:updated_time" content="2016-10-30T01:08:02.421Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos 7 日常操作">
-<meta name="twitter:description" content="centos7 日常操作正常关机重启流程
-查看在线用户
-1$ sudo who
-
-网络的联机状态
-12$ sudo netstat -a如果没有netstat命令通过 $ yum install net-tools 安装
-
-将数据由内存同步到硬盘中
-1$ sudo sync
-
-如有其它用户在线，通知用户，并重启或关机
-12345十分钟后关机$ sudo shutdown –h 10十分钟后重启$">
+<meta name="twitter:description" content="正常关机重启流程1. 查看在线用户1$ sudo who
+2. 网络的联机状态12345678$ sudo netstat -a```bash## 3. 如果没有netstat命令通过 $ yum install net-tools 安装十分钟后关机$ sudo shutdown –h 10十分钟后重启$ sudo shutdown -r 10">
 
 
 
@@ -362,21 +332,8 @@
       
 
       
-        <h1 id="centos7-日常操作"><a href="#centos7-日常操作" class="headerlink" title="centos7 日常操作"></a>centos7 日常操作</h1><h1 id="正常关机重启流程"><a href="#正常关机重启流程" class="headerlink" title="正常关机重启流程"></a>正常关机重启流程</h1><ol>
-<li><p>查看在线用户</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo who</div></pre></td></tr></table></figure>
-</li>
-<li><p>网络的联机状态</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo netstat <span class="_">-a</span></div><div class="line">如果没有netstat命令通过 $ yum install net-tools 安装</div></pre></td></tr></table></figure>
-</li>
-<li><p>将数据由内存同步到硬盘中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo sync</div></pre></td></tr></table></figure>
-</li>
-<li><p>如有其它用户在线，通知用户，并重启或关机</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">十分钟后关机</div><div class="line">$ sudo shutdown –h 10</div><div class="line"></div><div class="line">十分钟后重启</div><div class="line">$ sudo shutdown -r 10</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="正常关机重启流程-1"><a href="#正常关机重启流程-1" class="headerlink" title="正常关机重启流程"></a>正常关机重启流程</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">1. 查看在线用户</div><div class="line">$ sudo who</div><div class="line"></div><div class="line">2. 网络的联机状态</div><div class="line">$ sudo netstat <span class="_">-a</span></div><div class="line"></div><div class="line">3. 如果没有netstat命令通过 $ yum install net-tools 安装</div><div class="line">十分钟后关机</div><div class="line">$ sudo shutdown –h 10</div><div class="line">十分钟后重启</div><div class="line">$ sudo shutdown -r 10</div></pre></td></tr></table></figure>
+        <h1 id="正常关机重启流程"><a href="#正常关机重启流程" class="headerlink" title="正常关机重启流程"></a>正常关机重启流程</h1><h2 id="1-查看在线用户"><a href="#1-查看在线用户" class="headerlink" title="1. 查看在线用户"></a>1. 查看在线用户</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo who</div></pre></td></tr></table></figure>
+<h3 id="2-网络的联机状态"><a href="#2-网络的联机状态" class="headerlink" title="2. 网络的联机状态"></a>2. 网络的联机状态</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ sudo netstat <span class="_">-a</span></div><div class="line">```bash</div><div class="line"></div><div class="line"><span class="comment">## 3. 如果没有netstat命令通过 $ yum install net-tools 安装</span></div><div class="line">十分钟后关机</div><div class="line">$ sudo shutdown –h 10</div><div class="line">十分钟后重启</div><div class="line">$ sudo shutdown -r 10</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -410,16 +367,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/29/maven/jenkins持续集成工具/" rel="next" title="jenkins 持续集成工具">
-                <i class="fa fa-chevron-left"></i> jenkins 持续集成工具
+              <a href="/2016/10/29/maven/nexus私服/" rel="next" title="nexus私服">
+                <i class="fa fa-chevron-left"></i> nexus私服
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/29/centos7/centos7 安装 oracle11.2/" rel="prev" title="centos7 安装 oracle11.2">
-                centos7 安装 oracle11.2 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/29/maven/maven/" rel="prev" title="maven学习笔记">
+                maven学习笔记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -534,7 +491,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#centos7-日常操作"><span class="nav-number">1.</span> <span class="nav-text">centos7 日常操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正常关机重启流程"><span class="nav-number">2.</span> <span class="nav-text">正常关机重启流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正常关机重启流程-1"><span class="nav-number">3.</span> <span class="nav-text">正常关机重启流程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#正常关机重启流程"><span class="nav-number">1.</span> <span class="nav-text">正常关机重启流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-查看在线用户"><span class="nav-number">1.1.</span> <span class="nav-text">1. 查看在线用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-网络的联机状态"><span class="nav-number">1.1.1.</span> <span class="nav-text">2. 网络的联机状态</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
