@@ -272,6 +272,127 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/29/centos7/centos 添加服务/" itemprop="url">
+                  centos 添加服务
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T09:38:50+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/centos/" itemprop="url" rel="index">
+                    <span itemprop="name">centos</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Centos-系统服务"><a href="#Centos-系统服务" class="headerlink" title="Centos 系统服务;"></a>Centos 系统服务;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1.系统（system）服务,所在目录:/lib/systemd/system</div><div class="line">2.用户服务，所在目录:/usr/lib/systemd/</div><div class="line"></div><div class="line">区别：    </div><div class="line">系统服务开机没有登录就能运行。</div><div class="line">用户服务得用户登录后才能启动。</div></pre></td></tr></table></figure>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">在系统服务目录下新建nginx服务，文件需要以.service结尾。</div><div class="line">vi /lib/systemd/system/nginx.service</div><div class="line"></div><div class="line">添加如下内容</div><div class="line"></div><div class="line">[Unit]  </div><div class="line">Description=nginx  </div><div class="line">After=network.target  </div><div class="line">   </div><div class="line">[Service]  </div><div class="line">Type=forking  </div><div class="line">ExecStart=/www/lanmps/init.d/nginx start  </div><div class="line">ExecReload=/www/lanmps/init.d/nginx restart  </div><div class="line">ExecStop=/www/lanmps/init.d/nginx  stop  </div><div class="line">PrivateTmp=true  </div><div class="line">   </div><div class="line">[Install]  </div><div class="line">WantedBy=multi-user.target</div><div class="line"></div><div class="line">设置执行权限</div><div class="line">chmod 754 nginx.service</div><div class="line"></div><div class="line">设置开机启动</div><div class="line">systemctl enable nginx.service</div><div class="line"></div><div class="line">至此系统级的服务已经配置好了，下面是一些参数的说明</div><div class="line"></div><div class="line">================================参数说明================================</div><div class="line">[Unit]:服务的说明</div><div class="line">Description:描述服务</div><div class="line">After:描述服务类别</div><div class="line">[Service]服务运行参数的设置</div><div class="line">Type=forking是后台运行的形式</div><div class="line">ExecStart为服务的具体运行命令</div><div class="line">ExecReload为重启命令</div><div class="line">ExecStop为停止命令</div><div class="line">PrivateTmp=True表示给服务分配独立的临时空间</div><div class="line">注意：[Service]的启动、重启、停止命令全部要求使用绝对路径</div><div class="line">[Install]服务安装的相关设置，可设置为多用户</div></pre></td></tr></table></figure>
+<h3 id="系统服务命令"><a href="#系统服务命令" class="headerlink" title="系统服务命令"></a>系统服务命令</h3><p>1.设置服务开机自启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl enable httpd.service</div></pre></td></tr></table></figure></p>
+<p>2.设置服务开机不自启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl disable httpd.service</div></pre></td></tr></table></figure></p>
+<p>3.查看服务启动状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl status httpd.service （服务详细信息）</div></pre></td></tr></table></figure></p>
+<p>4.显示所有已启动的服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl is-active httpd.service （仅显示是否 Active)</div></pre></td></tr></table></figure></p>
+<p>5.启动某服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl start httpd.service</div></pre></td></tr></table></figure></p>
+<p>6.停止某服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl stop httpd.service</div></pre></td></tr></table></figure></p>
+<p>7.重启某服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart httpd.service</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/29/centos7/centos 7 jdk环境变量设置/" itemprop="url">
                   centos 7 jdk环境变量设置
                 </a>
@@ -509,8 +630,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/29/centos7/centos 添加服务/" itemprop="url">
-                  centos 添加服务
+                <a class="post-title-link" href="/2016/10/29/centos7/centos7 日常操作/" itemprop="url">
+                  centos 7 日常操作
                 </a>
               
             
@@ -537,8 +658,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/centos/" itemprop="url" rel="index">
-                    <span itemprop="name">centos</span>
+                  <a href="/categories/centos7/" itemprop="url" rel="index">
+                    <span itemprop="name">centos7</span>
                   </a>
                 </span>
 
@@ -572,15 +693,20 @@
       
         
           
-            <h3 id="Centos-系统服务"><a href="#Centos-系统服务" class="headerlink" title="Centos 系统服务;"></a>Centos 系统服务;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1.系统（system）服务,所在目录:/lib/systemd/system</div><div class="line">2.用户服务，所在目录:/usr/lib/systemd/</div><div class="line"></div><div class="line">区别：    </div><div class="line">系统服务开机没有登录就能运行。</div><div class="line">用户服务得用户登录后才能启动。</div></pre></td></tr></table></figure>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">在系统服务目录下新建nginx服务，文件需要以.service结尾。</div><div class="line">vi /lib/systemd/system/nginx.service</div><div class="line"></div><div class="line">添加如下内容</div><div class="line"></div><div class="line">[Unit]  </div><div class="line">Description=nginx  </div><div class="line">After=network.target  </div><div class="line">   </div><div class="line">[Service]  </div><div class="line">Type=forking  </div><div class="line">ExecStart=/www/lanmps/init.d/nginx start  </div><div class="line">ExecReload=/www/lanmps/init.d/nginx restart  </div><div class="line">ExecStop=/www/lanmps/init.d/nginx  stop  </div><div class="line">PrivateTmp=true  </div><div class="line">   </div><div class="line">[Install]  </div><div class="line">WantedBy=multi-user.target</div><div class="line"></div><div class="line">设置执行权限</div><div class="line">chmod 754 nginx.service</div><div class="line"></div><div class="line">设置开机启动</div><div class="line">systemctl enable nginx.service</div><div class="line"></div><div class="line">至此系统级的服务已经配置好了，下面是一些参数的说明</div><div class="line"></div><div class="line">================================参数说明================================</div><div class="line">[Unit]:服务的说明</div><div class="line">Description:描述服务</div><div class="line">After:描述服务类别</div><div class="line">[Service]服务运行参数的设置</div><div class="line">Type=forking是后台运行的形式</div><div class="line">ExecStart为服务的具体运行命令</div><div class="line">ExecReload为重启命令</div><div class="line">ExecStop为停止命令</div><div class="line">PrivateTmp=True表示给服务分配独立的临时空间</div><div class="line">注意：[Service]的启动、重启、停止命令全部要求使用绝对路径</div><div class="line">[Install]服务安装的相关设置，可设置为多用户</div></pre></td></tr></table></figure>
-<h3 id="系统服务命令"><a href="#系统服务命令" class="headerlink" title="系统服务命令"></a>系统服务命令</h3><p>1.设置服务开机自启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl enable httpd.service</div></pre></td></tr></table></figure></p>
-<p>2.设置服务开机不自启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl disable httpd.service</div></pre></td></tr></table></figure></p>
-<p>3.查看服务启动状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl status httpd.service （服务详细信息）</div></pre></td></tr></table></figure></p>
-<p>4.显示所有已启动的服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl is-active httpd.service （仅显示是否 Active)</div></pre></td></tr></table></figure></p>
-<p>5.启动某服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl start httpd.service</div></pre></td></tr></table></figure></p>
-<p>6.停止某服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl stop httpd.service</div></pre></td></tr></table></figure></p>
-<p>7.重启某服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart httpd.service</div></pre></td></tr></table></figure></p>
+            <h1 id="centos7-日常操作"><a href="#centos7-日常操作" class="headerlink" title="centos7 日常操作"></a>centos7 日常操作</h1><h3 id="正常关机重启流程"><a href="#正常关机重启流程" class="headerlink" title="正常关机重启流程"></a>正常关机重启流程</h3><ol>
+<li><p>查看在线用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo who</div></pre></td></tr></table></figure>
+</li>
+<li><p>网络的联机状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo netstat <span class="_">-a</span></div><div class="line">如果没有netstat命令通过 $ yum install net-tools 安装</div></pre></td></tr></table></figure>
+</li>
+<li><p>将数据由内存同步到硬盘中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo sync</div></pre></td></tr></table></figure>
+</li>
+<li><p>如有其它用户在线，通知用户，并重启或关机</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">十分钟后关机</div><div class="line">$ sudo shutdown –h 10</div><div class="line"></div><div class="line">十分钟后重启</div><div class="line">$ sudo shutdown -r 10</div></pre></td></tr></table></figure>
+</li>
+</ol>
 
           
         
@@ -752,6 +878,127 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/29/centos7/centos7 安装 oracle11.2/" itemprop="url">
+                  centos7 安装 oracle11.2
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T09:38:50+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/oracle/" itemprop="url" rel="index">
+                    <span itemprop="name">oracle</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="CentOS7安装oracle11-2-0-1-0数据库"><a href="#CentOS7安装oracle11-2-0-1-0数据库" class="headerlink" title="CentOS7安装oracle11.2.0.1.0数据库"></a>CentOS7安装oracle11.2.0.1.0数据库</h2><p>1.下载安装包</p>
+<p>官方地址<br><a href="http://www.oracle.com/technetwork/database/enterprise-edition/downloads/112010-linx8664soft-100572.html" target="_blank" rel="external">http://www.oracle.com/technetwork/database/enterprise-edition/downloads/112010-linx8664soft-100572.html</a></p>
+<p>2.CnetOS系统环境设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line">1.修改主机名称（可省略）</div><div class="line">$ vi /etc/hostname</div><div class="line"></div><div class="line">2.在/etc/hosts文件中添加主机名</div><div class="line">如：</div><div class="line">127.0.0.1   CentOS7 localhost</div><div class="line">#127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</div><div class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</div><div class="line">192.168.100.29 CentOS7</div><div class="line"></div><div class="line">3.安装oracle 11gr2依赖包</div><div class="line">yum install gcc make binutils gcc-c++ compat-libstdc++-33 elfutils-libelf-devel elfutils-libelf-devel-static ksh libaio libaio-devel numactl-devel sysstat unixODBC unixODBC-devel pcre-devel –y</div><div class="line"></div><div class="line">4.添加安装用户和用户组</div><div class="line"># groudadd oinstall</div><div class="line"># groupadd dba</div><div class="line"># useradd -g oinstall -G dba oracle</div><div class="line"># id oracle</div><div class="line">uid=1001(oracle) gid=1001(oinstall) groups=1001(oinstall),1002(dba)</div><div class="line"></div><div class="line">5.修改内核参数配置文件</div><div class="line"># vim /etc/sysctl.conf</div><div class="line">添加如下内容</div><div class="line">fs.aio-max-nr = 1048576</div><div class="line">fs.file-max = 6815744</div><div class="line">kernel.shmall = 2097152</div><div class="line">kernel.shmmax = 1073741824</div><div class="line">kernel.shmmni = 4096</div><div class="line">kernel.sem = 250 32000 100 128</div><div class="line">net.ipv4.ip_local_port_range = 9000 65500</div><div class="line">net.core.rmem_default = 262144</div><div class="line">net.core.rmem_max = 4194304</div><div class="line">net.core.wmem_default = 262144</div><div class="line">net.core.wmem_max = 1048576</div><div class="line"></div><div class="line">其中kernel.shmmax = 1073741824为本机物理内存（2G）的一半，单位为byte。</div><div class="line"></div><div class="line"># sysctl -p</div><div class="line"></div><div class="line">6.修改用户的限制文件</div><div class="line"># vim /etc/security/limits.conf</div><div class="line">添加以下内容</div><div class="line">oracle           soft    nproc           2047</div><div class="line">oracle           hard    nproc           16384</div><div class="line">oracle           soft    nofile          1024</div><div class="line">oracle           hard    nofile          65536</div><div class="line">oracle           soft    stack           10240</div><div class="line"></div><div class="line">修改/etc/pam.d/login文件：</div><div class="line"># vim /etc/pam.d/login</div><div class="line">添加以下内容：</div><div class="line">session  required   /lib64/security/pam_limits.so</div><div class="line">session  required   pam_limits.so</div><div class="line"></div><div class="line">修改/etc/profile文件：</div><div class="line"># vim /etc/profile</div><div class="line">添加以下内容：</div><div class="line">if [ $USER = &quot;oracle&quot; ]; then</div><div class="line">  if [ $SHELL = &quot;/bin/ksh&quot; ]; then</div><div class="line">   ulimit -p 16384</div><div class="line">   ulimit -n 65536</div><div class="line">  else</div><div class="line">   ulimit -u 16384 -n 65536</div><div class="line">  fi</div><div class="line">fi</div><div class="line"></div><div class="line">7.创建安装目录和设置文件权限</div><div class="line"># mkdir -p /u01/app/oracle/product/11.2.0</div><div class="line"># mkdir /u01/app/oracle/oradata</div><div class="line"># mkdir /u01/app/oracle/inventory</div><div class="line"># mkdir /u01/app/oracle/fast_recovery_area</div><div class="line"># chown -R oracle:oinstall /u01/app/oracle</div><div class="line"># chmod -R 775 /u01/app/oracle</div><div class="line"></div><div class="line">8.设置oracle用户环境变量</div><div class="line"># su - oracle</div><div class="line">$ vim .bash_profile</div><div class="line">添加如下内容</div><div class="line">ORACLE_BASE=/u01/app/oracle</div><div class="line">ORACLE_HOME=$ORACLE_BASE/product/11.2.0</div><div class="line">ORACLE_SID=orcl</div><div class="line">PATH=$PATH:$ORACLE_HOME/bin</div><div class="line">export ORACLE_BASE ORACLE_HOME ORACLE_SID PATH</div></pre></td></tr></table></figure></p>
+<p>3.安装文件准备</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">1.上传安装文件到/tmp目录</div><div class="line">2.解压</div><div class="line"># unzip linux.x64_11gR2_database_1of2.zip &amp;&amp; unzip linux.x64_11gR2_database_2of2.zip</div><div class="line"></div><div class="line">3.编辑静默安装文件</div><div class="line"># su - oracle</div><div class="line">$ cp -R /tmp/database/response/ .</div><div class="line">$ cd response/</div><div class="line">$ vim db_install.rsp</div><div class="line">需要设置的选项如下：</div><div class="line"></div><div class="line">oracle.install.option=INSTALL_DB_SWONLY</div><div class="line">ORACLE_HOSTNAME=CentOS</div><div class="line">UNIX_GROUP_NAME=oinstall</div><div class="line">INVENTORY_LOCATION=/u01/app/oracle/inventory</div><div class="line">SELECTED_LANGUAGES=en,zh_CN</div><div class="line">ORACLE_HOME=/u01/app/oracle/product/11.2.0</div><div class="line">ORACLE_BASE=/u01/app/oracle</div><div class="line">oracle.install.db.InstallEdition=EE</div><div class="line">oracle.install.db.DBA_GROUP=dba</div><div class="line">oracle.install.db.OPER_GROUP=dba</div><div class="line">DECLINE_SECURITY_UPDATES=true</div></pre></td></tr></table></figure>
+<p>4.根据响应文件静默安装oracle11g<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$ cd /tmp/database/</div><div class="line">$ ./runInstaller -silent -responseFile /home/oracle/response/db_install.rsp -ignorePrereq</div><div class="line"></div><div class="line">开始Oracle在后台静默安装。安装过程中，如果提示[WARNING]不必理会，此时安装程序仍在后台进行，如果出现[FATAL]，则安装程序已经停止了。</div><div class="line">可以在以下位置找到本次安装会话的日志:</div><div class="line">/u01/app/oracle/inventory/logs/installActions2015-06-08_04-00-25PM.log</div><div class="line">可以切换终端执行top命令查看后台进程一直是在安装的，/u01目录也在不断增大，</div><div class="line">当出现以下提示时，代表安装成功：</div><div class="line"></div><div class="line">Successfully Setup Sofware.</div><div class="line"></div><div class="line">按照要求执行脚本。</div><div class="line">打开终端，以root身份登录，执行脚本：</div><div class="line">$ su</div><div class="line"># sh /u01/app/oracle/inventory/orainstRoot.sh</div><div class="line"># sh /u01/app/oracle/product/11.2.0/root.sh</div><div class="line"></div><div class="line">到此数据库安装完成</div></pre></td></tr></table></figure></p>
+<p>5.以静默方式配置监听<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ netca /silent /responsefile /home/oracle/response/netca.rsp</div><div class="line"></div><div class="line">成功运行后，在/u01/app/oracle/product/11.2.0/network/admin/中生成listener.ora和sqlnet.ora</div><div class="line">$ netstat -tnulp | grep 1521</div></pre></td></tr></table></figure></p>
+<p>6.以静默方式建立新库，同时也建立一个对应的实例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">$ vim /home/oracle/response/dbca.rsp</div><div class="line"></div><div class="line">设置以下参数：</div><div class="line">GDBNAME = &quot;orcl&quot;</div><div class="line">SID = &quot;orcl&quot;</div><div class="line">SYSPASSWORD = &quot;oracle&quot;</div><div class="line">SYSTEMPASSWORD = &quot;oracle&quot;</div><div class="line">SYSMANPASSWORD = &quot;oracle&quot;</div><div class="line">DBSNMPPASSWORD = &quot;oracle&quot;</div><div class="line">DATAFILEDESTINATION =/u01/app/oracle/oradata</div><div class="line">RECOVERYAREADESTINATION=/u01/app/oracle/fast_recovery_area</div><div class="line">CHARACTERSET = &quot;ZHS16GBK&quot;</div><div class="line">TOTALMEMORY = &quot;1638&quot;</div><div class="line"></div><div class="line">其中TOTALMEMORY = &quot;1638&quot; 为1638MB，物理内存2G*80%。</div><div class="line"></div><div class="line">进行静默配置：</div><div class="line">$ dbca -silent -responseFile /home/oracle/response/dbca.rsp</div><div class="line"></div><div class="line">建库后进行实例进程检查：</div><div class="line">$ ps -ef | grep ora_ | grep -v grep</div><div class="line"></div><div class="line">查看监听状态：</div><div class="line">$ lsnrctl status</div><div class="line"></div><div class="line">登录查看实例状态：</div><div class="line">$ sqlplus / as sysdba</div><div class="line">SQL&gt; select status from v$instance;</div></pre></td></tr></table></figure></p>
+<p>7.切换到root账户建立自启动脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">1.修改/u01/app/oracle/product/11.2.0/bin/dbstart</div><div class="line">$ vim /u01/app/oracle/product/11.2.0/bin/dbstart</div><div class="line">将ORACLE_HOME_LISTNER=$1修改为ORACLE_HOME_LISTNER=$ORACLE_HOME</div><div class="line"></div><div class="line">2.修改/u01/app/oracle/product/11.2.0/bin/dbshut</div><div class="line">$ vim /u01/app/oracle/product/11.2.0/bin/dbshut</div><div class="line">将ORACLE_HOME_LISTNER=$1修改为ORACLE_HOME_LISTNER=$ORACLE_HOME</div><div class="line"></div><div class="line">3.修改/etc/oratab文件</div><div class="line">[oracle@CentOS ~]$ vim /etc/oratab</div><div class="line">将orcl:/u01/app/oracle/product/11.2.0:N中最后的N改为Y，成为orcl:/u01/app/oracle/product/11.2.0:Y</div><div class="line"></div><div class="line">4.	输入命令dbshut和dbstart测试</div><div class="line">$ dbshut</div><div class="line">$ dbstart</div><div class="line"></div><div class="line">6.创建启动脚本</div><div class="line">$ su -</div><div class="line"># vim /etc/rc.d/init.d/oracle</div><div class="line"></div><div class="line">添加以下内容</div><div class="line"></div><div class="line">#!/bin/sh</div><div class="line"># chkconfig: 345 61 61</div><div class="line"># description: Oracle 11g R2 AutoRun Servimces</div><div class="line"># /etc/init.d/oracle</div><div class="line">#</div><div class="line"># Run-level Startup script for the Oracle Instance, Listener, and</div><div class="line"># Web Interface</div><div class="line"></div><div class="line">export ORACLE_BASE=/u01/app/oracle</div><div class="line">export ORACLE_HOME=$ORACLE_BASE/product/11.2.0</div><div class="line">export ORACLE_SID=orcl</div><div class="line">export PATH=$PATH:$ORACLE_HOME/bin</div><div class="line"></div><div class="line">ORA_OWNR=&quot;oracle&quot;</div><div class="line"></div><div class="line"># if the executables do not exist -- display error</div><div class="line"></div><div class="line">if [ ! -f $ORACLE_HOME/bin/dbstart -o ! -d $ORACLE_HOME ]</div><div class="line">then</div><div class="line">echo &quot;Oracle startup: cannot start&quot;</div><div class="line">exit 1</div><div class="line">fi</div><div class="line"></div><div class="line"># depending on parameter -- startup, shutdown, restart</div><div class="line"># of the instance and listener or usage display</div><div class="line"></div><div class="line">case &quot;$1&quot; in</div><div class="line">start)</div><div class="line"># Oracle listener and instance startup</div><div class="line">su $ORA_OWNR -lc $ORACLE_HOME/bin/dbstart</div><div class="line">echo &quot;Oracle Start Succesful!OK.&quot;</div><div class="line">;;</div><div class="line">stop)</div><div class="line"># Oracle listener and instance shutdown</div><div class="line">su $ORA_OWNR -lc $ORACLE_HOME/bin/dbshut</div><div class="line">echo &quot;Oracle Stop Succesful!OK.&quot;</div><div class="line">;;</div><div class="line">reload|restart)</div><div class="line">$0 stop</div><div class="line">$0 start</div><div class="line">;;</div><div class="line">*)</div><div class="line">echo $&quot;Usage: `basename $0` &#123;start|stop|reload|reload&#125;&quot;</div><div class="line">exit 1</div><div class="line">esac</div><div class="line">exit 0</div><div class="line"></div><div class="line">7.修改/etc/init.d/oracle服务文件权限</div><div class="line"># chmod 755 /etc/init.d/oracle</div><div class="line"></div><div class="line">8.设置开机自启动</div><div class="line"># chkconfig oracle on</div><div class="line"></div><div class="line">9.进行service oracle start/stop/restart测试</div><div class="line"></div><div class="line">10.重启系统，查看是否自启动成功</div><div class="line"># reboot</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/29/centos7/centos7 安装 nginx/" itemprop="url">
                   centos7 安装 nginx
                 </a>
@@ -859,127 +1106,6 @@
 <li>网页播放器可选择jwplayer等工具</li>
 </ul>
 </blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/29/centos7/centos7 安装 oracle11.2/" itemprop="url">
-                  centos7 安装 oracle11.2
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-29T09:38:50+08:00" content="2016-10-29">
-              2016-10-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/oracle/" itemprop="url" rel="index">
-                    <span itemprop="name">oracle</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="CentOS7安装oracle11-2-0-1-0数据库"><a href="#CentOS7安装oracle11-2-0-1-0数据库" class="headerlink" title="CentOS7安装oracle11.2.0.1.0数据库"></a>CentOS7安装oracle11.2.0.1.0数据库</h2><p>1.下载安装包</p>
-<p>官方地址<br><a href="http://www.oracle.com/technetwork/database/enterprise-edition/downloads/112010-linx8664soft-100572.html" target="_blank" rel="external">http://www.oracle.com/technetwork/database/enterprise-edition/downloads/112010-linx8664soft-100572.html</a></p>
-<p>2.CnetOS系统环境设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line">1.修改主机名称（可省略）</div><div class="line">$ vi /etc/hostname</div><div class="line"></div><div class="line">2.在/etc/hosts文件中添加主机名</div><div class="line">如：</div><div class="line">127.0.0.1   CentOS7 localhost</div><div class="line">#127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</div><div class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</div><div class="line">192.168.100.29 CentOS7</div><div class="line"></div><div class="line">3.安装oracle 11gr2依赖包</div><div class="line">yum install gcc make binutils gcc-c++ compat-libstdc++-33 elfutils-libelf-devel elfutils-libelf-devel-static ksh libaio libaio-devel numactl-devel sysstat unixODBC unixODBC-devel pcre-devel –y</div><div class="line"></div><div class="line">4.添加安装用户和用户组</div><div class="line"># groudadd oinstall</div><div class="line"># groupadd dba</div><div class="line"># useradd -g oinstall -G dba oracle</div><div class="line"># id oracle</div><div class="line">uid=1001(oracle) gid=1001(oinstall) groups=1001(oinstall),1002(dba)</div><div class="line"></div><div class="line">5.修改内核参数配置文件</div><div class="line"># vim /etc/sysctl.conf</div><div class="line">添加如下内容</div><div class="line">fs.aio-max-nr = 1048576</div><div class="line">fs.file-max = 6815744</div><div class="line">kernel.shmall = 2097152</div><div class="line">kernel.shmmax = 1073741824</div><div class="line">kernel.shmmni = 4096</div><div class="line">kernel.sem = 250 32000 100 128</div><div class="line">net.ipv4.ip_local_port_range = 9000 65500</div><div class="line">net.core.rmem_default = 262144</div><div class="line">net.core.rmem_max = 4194304</div><div class="line">net.core.wmem_default = 262144</div><div class="line">net.core.wmem_max = 1048576</div><div class="line"></div><div class="line">其中kernel.shmmax = 1073741824为本机物理内存（2G）的一半，单位为byte。</div><div class="line"></div><div class="line"># sysctl -p</div><div class="line"></div><div class="line">6.修改用户的限制文件</div><div class="line"># vim /etc/security/limits.conf</div><div class="line">添加以下内容</div><div class="line">oracle           soft    nproc           2047</div><div class="line">oracle           hard    nproc           16384</div><div class="line">oracle           soft    nofile          1024</div><div class="line">oracle           hard    nofile          65536</div><div class="line">oracle           soft    stack           10240</div><div class="line"></div><div class="line">修改/etc/pam.d/login文件：</div><div class="line"># vim /etc/pam.d/login</div><div class="line">添加以下内容：</div><div class="line">session  required   /lib64/security/pam_limits.so</div><div class="line">session  required   pam_limits.so</div><div class="line"></div><div class="line">修改/etc/profile文件：</div><div class="line"># vim /etc/profile</div><div class="line">添加以下内容：</div><div class="line">if [ $USER = &quot;oracle&quot; ]; then</div><div class="line">  if [ $SHELL = &quot;/bin/ksh&quot; ]; then</div><div class="line">   ulimit -p 16384</div><div class="line">   ulimit -n 65536</div><div class="line">  else</div><div class="line">   ulimit -u 16384 -n 65536</div><div class="line">  fi</div><div class="line">fi</div><div class="line"></div><div class="line">7.创建安装目录和设置文件权限</div><div class="line"># mkdir -p /u01/app/oracle/product/11.2.0</div><div class="line"># mkdir /u01/app/oracle/oradata</div><div class="line"># mkdir /u01/app/oracle/inventory</div><div class="line"># mkdir /u01/app/oracle/fast_recovery_area</div><div class="line"># chown -R oracle:oinstall /u01/app/oracle</div><div class="line"># chmod -R 775 /u01/app/oracle</div><div class="line"></div><div class="line">8.设置oracle用户环境变量</div><div class="line"># su - oracle</div><div class="line">$ vim .bash_profile</div><div class="line">添加如下内容</div><div class="line">ORACLE_BASE=/u01/app/oracle</div><div class="line">ORACLE_HOME=$ORACLE_BASE/product/11.2.0</div><div class="line">ORACLE_SID=orcl</div><div class="line">PATH=$PATH:$ORACLE_HOME/bin</div><div class="line">export ORACLE_BASE ORACLE_HOME ORACLE_SID PATH</div></pre></td></tr></table></figure></p>
-<p>3.安装文件准备</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">1.上传安装文件到/tmp目录</div><div class="line">2.解压</div><div class="line"># unzip linux.x64_11gR2_database_1of2.zip &amp;&amp; unzip linux.x64_11gR2_database_2of2.zip</div><div class="line"></div><div class="line">3.编辑静默安装文件</div><div class="line"># su - oracle</div><div class="line">$ cp -R /tmp/database/response/ .</div><div class="line">$ cd response/</div><div class="line">$ vim db_install.rsp</div><div class="line">需要设置的选项如下：</div><div class="line"></div><div class="line">oracle.install.option=INSTALL_DB_SWONLY</div><div class="line">ORACLE_HOSTNAME=CentOS</div><div class="line">UNIX_GROUP_NAME=oinstall</div><div class="line">INVENTORY_LOCATION=/u01/app/oracle/inventory</div><div class="line">SELECTED_LANGUAGES=en,zh_CN</div><div class="line">ORACLE_HOME=/u01/app/oracle/product/11.2.0</div><div class="line">ORACLE_BASE=/u01/app/oracle</div><div class="line">oracle.install.db.InstallEdition=EE</div><div class="line">oracle.install.db.DBA_GROUP=dba</div><div class="line">oracle.install.db.OPER_GROUP=dba</div><div class="line">DECLINE_SECURITY_UPDATES=true</div></pre></td></tr></table></figure>
-<p>4.根据响应文件静默安装oracle11g<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$ cd /tmp/database/</div><div class="line">$ ./runInstaller -silent -responseFile /home/oracle/response/db_install.rsp -ignorePrereq</div><div class="line"></div><div class="line">开始Oracle在后台静默安装。安装过程中，如果提示[WARNING]不必理会，此时安装程序仍在后台进行，如果出现[FATAL]，则安装程序已经停止了。</div><div class="line">可以在以下位置找到本次安装会话的日志:</div><div class="line">/u01/app/oracle/inventory/logs/installActions2015-06-08_04-00-25PM.log</div><div class="line">可以切换终端执行top命令查看后台进程一直是在安装的，/u01目录也在不断增大，</div><div class="line">当出现以下提示时，代表安装成功：</div><div class="line"></div><div class="line">Successfully Setup Sofware.</div><div class="line"></div><div class="line">按照要求执行脚本。</div><div class="line">打开终端，以root身份登录，执行脚本：</div><div class="line">$ su</div><div class="line"># sh /u01/app/oracle/inventory/orainstRoot.sh</div><div class="line"># sh /u01/app/oracle/product/11.2.0/root.sh</div><div class="line"></div><div class="line">到此数据库安装完成</div></pre></td></tr></table></figure></p>
-<p>5.以静默方式配置监听<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ netca /silent /responsefile /home/oracle/response/netca.rsp</div><div class="line"></div><div class="line">成功运行后，在/u01/app/oracle/product/11.2.0/network/admin/中生成listener.ora和sqlnet.ora</div><div class="line">$ netstat -tnulp | grep 1521</div></pre></td></tr></table></figure></p>
-<p>6.以静默方式建立新库，同时也建立一个对应的实例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">$ vim /home/oracle/response/dbca.rsp</div><div class="line"></div><div class="line">设置以下参数：</div><div class="line">GDBNAME = &quot;orcl&quot;</div><div class="line">SID = &quot;orcl&quot;</div><div class="line">SYSPASSWORD = &quot;oracle&quot;</div><div class="line">SYSTEMPASSWORD = &quot;oracle&quot;</div><div class="line">SYSMANPASSWORD = &quot;oracle&quot;</div><div class="line">DBSNMPPASSWORD = &quot;oracle&quot;</div><div class="line">DATAFILEDESTINATION =/u01/app/oracle/oradata</div><div class="line">RECOVERYAREADESTINATION=/u01/app/oracle/fast_recovery_area</div><div class="line">CHARACTERSET = &quot;ZHS16GBK&quot;</div><div class="line">TOTALMEMORY = &quot;1638&quot;</div><div class="line"></div><div class="line">其中TOTALMEMORY = &quot;1638&quot; 为1638MB，物理内存2G*80%。</div><div class="line"></div><div class="line">进行静默配置：</div><div class="line">$ dbca -silent -responseFile /home/oracle/response/dbca.rsp</div><div class="line"></div><div class="line">建库后进行实例进程检查：</div><div class="line">$ ps -ef | grep ora_ | grep -v grep</div><div class="line"></div><div class="line">查看监听状态：</div><div class="line">$ lsnrctl status</div><div class="line"></div><div class="line">登录查看实例状态：</div><div class="line">$ sqlplus / as sysdba</div><div class="line">SQL&gt; select status from v$instance;</div></pre></td></tr></table></figure></p>
-<p>7.切换到root账户建立自启动脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">1.修改/u01/app/oracle/product/11.2.0/bin/dbstart</div><div class="line">$ vim /u01/app/oracle/product/11.2.0/bin/dbstart</div><div class="line">将ORACLE_HOME_LISTNER=$1修改为ORACLE_HOME_LISTNER=$ORACLE_HOME</div><div class="line"></div><div class="line">2.修改/u01/app/oracle/product/11.2.0/bin/dbshut</div><div class="line">$ vim /u01/app/oracle/product/11.2.0/bin/dbshut</div><div class="line">将ORACLE_HOME_LISTNER=$1修改为ORACLE_HOME_LISTNER=$ORACLE_HOME</div><div class="line"></div><div class="line">3.修改/etc/oratab文件</div><div class="line">[oracle@CentOS ~]$ vim /etc/oratab</div><div class="line">将orcl:/u01/app/oracle/product/11.2.0:N中最后的N改为Y，成为orcl:/u01/app/oracle/product/11.2.0:Y</div><div class="line"></div><div class="line">4.	输入命令dbshut和dbstart测试</div><div class="line">$ dbshut</div><div class="line">$ dbstart</div><div class="line"></div><div class="line">6.创建启动脚本</div><div class="line">$ su -</div><div class="line"># vim /etc/rc.d/init.d/oracle</div><div class="line"></div><div class="line">添加以下内容</div><div class="line"></div><div class="line">#!/bin/sh</div><div class="line"># chkconfig: 345 61 61</div><div class="line"># description: Oracle 11g R2 AutoRun Servimces</div><div class="line"># /etc/init.d/oracle</div><div class="line">#</div><div class="line"># Run-level Startup script for the Oracle Instance, Listener, and</div><div class="line"># Web Interface</div><div class="line"></div><div class="line">export ORACLE_BASE=/u01/app/oracle</div><div class="line">export ORACLE_HOME=$ORACLE_BASE/product/11.2.0</div><div class="line">export ORACLE_SID=orcl</div><div class="line">export PATH=$PATH:$ORACLE_HOME/bin</div><div class="line"></div><div class="line">ORA_OWNR=&quot;oracle&quot;</div><div class="line"></div><div class="line"># if the executables do not exist -- display error</div><div class="line"></div><div class="line">if [ ! -f $ORACLE_HOME/bin/dbstart -o ! -d $ORACLE_HOME ]</div><div class="line">then</div><div class="line">echo &quot;Oracle startup: cannot start&quot;</div><div class="line">exit 1</div><div class="line">fi</div><div class="line"></div><div class="line"># depending on parameter -- startup, shutdown, restart</div><div class="line"># of the instance and listener or usage display</div><div class="line"></div><div class="line">case &quot;$1&quot; in</div><div class="line">start)</div><div class="line"># Oracle listener and instance startup</div><div class="line">su $ORA_OWNR -lc $ORACLE_HOME/bin/dbstart</div><div class="line">echo &quot;Oracle Start Succesful!OK.&quot;</div><div class="line">;;</div><div class="line">stop)</div><div class="line"># Oracle listener and instance shutdown</div><div class="line">su $ORA_OWNR -lc $ORACLE_HOME/bin/dbshut</div><div class="line">echo &quot;Oracle Stop Succesful!OK.&quot;</div><div class="line">;;</div><div class="line">reload|restart)</div><div class="line">$0 stop</div><div class="line">$0 start</div><div class="line">;;</div><div class="line">*)</div><div class="line">echo $&quot;Usage: `basename $0` &#123;start|stop|reload|reload&#125;&quot;</div><div class="line">exit 1</div><div class="line">esac</div><div class="line">exit 0</div><div class="line"></div><div class="line">7.修改/etc/init.d/oracle服务文件权限</div><div class="line"># chmod 755 /etc/init.d/oracle</div><div class="line"></div><div class="line">8.设置开机自启动</div><div class="line"># chkconfig oracle on</div><div class="line"></div><div class="line">9.进行service oracle start/stop/restart测试</div><div class="line"></div><div class="line">10.重启系统，查看是否自启动成功</div><div class="line"># reboot</div></pre></td></tr></table></figure></p>
 
           
         
@@ -1425,7 +1551,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1442,7 +1568,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
